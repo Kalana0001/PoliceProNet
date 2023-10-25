@@ -14,7 +14,7 @@ input {
 .container {
   position: relative;
   width: 100%;
-  background: linear-gradient(to right,#00093c,#2d0b00);
+  background-color: #221f2f;
   min-height: 100vh;
   overflow: hidden;
 }
@@ -164,7 +164,8 @@ form.sign-in-form {
 }
 
 .btn:hover {
-  background-color: #4d84e2;
+  border: solid;
+ 
 }
 .panels-container {
   position: absolute;
@@ -240,6 +241,9 @@ form.sign-in-form {
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+}
+.btn.transparent:hover {
+ background: #221f2f;
 }
 
 .right-panel .image,

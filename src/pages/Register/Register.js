@@ -5,6 +5,8 @@ import logpg2 from '../../Images/car2.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGoogle, faLinkedin, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
+import SocialIcon from '../../components/atoms/SocialIcon/SocialIcon';
+import { Link } from 'react-router-dom';
 
 function Register() {
   // Use state to control the CSS class for the container
@@ -22,7 +24,7 @@ function Register() {
 
   return (
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
-      <div className="forms-container">
+      <div className="forms-container" >
         <div className="signin-signup">
         <form action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
@@ -36,23 +38,7 @@ function Register() {
             </div>
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon" id="icon1">
-              <i><FontAwesomeIcon icon={faFacebook}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon2">
-                <i class="fab fa-twitter"><FontAwesomeIcon icon={faTwitter}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon3">
-                <i class="fab fa-google"><FontAwesomeIcon icon={faGoogle}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon4">
-                <i class="fab fa-linkedin-in"><FontAwesomeIcon icon={faLinkedin}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon5">
-                <i class="fab fa-linkedin-in"><FontAwesomeIcon icon={faWhatsapp}/></i>
-              </a>
-            </div>
+            <SocialIcon/>
           </form>
           <form action="#" class="sign-up-form">
             <h2 class="title">Sign up</h2>
@@ -68,25 +54,9 @@ function Register() {
               <i class="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <Link to='/registerform'> <input type="submit" class="btn" value="Sign up" /> </Link>
             <p class="social-text">Or Sign up with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon" id="icon1">
-                <i><FontAwesomeIcon icon={faFacebook}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon2">
-                <i class="fab fa-twitter"><FontAwesomeIcon icon={faTwitter}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon3">
-                <i class="fab fa-google"><FontAwesomeIcon icon={faGoogle}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon4">
-                <i class="fab fa-linkedin-in"><FontAwesomeIcon icon={faLinkedin}/></i>
-              </a>
-              <a href="#" class="social-icon" id="icon5">
-                <i class="fab fa-linkedin-in"><FontAwesomeIcon icon={faWhatsapp}/></i>
-              </a>
-            </div>
+            <SocialIcon/>
           </form>
         </div>
       </div>

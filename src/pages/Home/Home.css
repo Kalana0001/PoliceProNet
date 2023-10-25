@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+.e-seeve-head{
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    margin-top: 100px;
+}
+.packimg1{
+    width: 65px;
+    margin-top: 5px;
+}
 *{
     margin: 0;
     padding: 0;
@@ -74,9 +83,22 @@
 .top-container .info-text{
     margin: 20px 0 32px;
     color: #fff;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 20px;
     letter-spacing: 0.5px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: linear-gradient(170deg, rgba(52, 93, 129, 0.08) 1.85%, rgba(57, 46, 75, 0.08) 98%);
+    animation: toLeft 0.8s;
+    
+}
+.homeheadhead{
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
 }
 
 .top-container .info-buttons{
@@ -98,12 +120,22 @@
 
 .top-container .info-btn.nav-btn{
     margin-left: 50px;
-    background-color: transparent;
-    border: 1px solid #fff;
+    background: transparent;
+    border: solid;
+}
+.top-container .info-btn.nav-btn:hover{
+    transform: scale(1.05);
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    border: solid;
+    
 }
 
 .top-container .info-btn.selected{
     border: none;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+}
+.top-container .info-btn.selected:hover{
+    border: solid;
     background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
 }
 
@@ -132,16 +164,18 @@
 .top-container .nft-box .info, .top-container .nft-box .likes{
     display: flex;
     align-items: center;
-    color: #fff;
+    background:  linear-gradient(95deg, #7e22ce 30%, #3b82f6 99.5%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .top-container .nft-box .info-img{
     object-fit: cover;
     flex-shrink: 0;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin-right: 10px;
 }
@@ -155,6 +189,9 @@
 .top-container .nft-box .likes .icon-box .bx{
     font-size: 30px;
     margin-right: 8px;
+}
+.top-container .nft-box:hover{
+    cursor: pointer;
 }
 
 .get-started{
@@ -220,10 +257,14 @@
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(90px);
 }
-
 .get-started .items-box .item-container .item .bx{
     font-size: 38px;
     color: #eee;
+}
+.get-started .items-box .item-container .item:hover{
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    backdrop-filter: blur(90px);
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1040px) {
@@ -301,4 +342,56 @@
     to{
         transform: translateX(0px);
     }
+}
+/* animation */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.boddyy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circle{
+    position: relative;
+    width: 200px;
+    height: 190px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.circle::before{
+    content: '';
+    width: 170px;
+    height: 300px;
+    position: absolute;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    animation: animate 3s linear infinite;
+}
+.circle::after{
+    content: '';
+    position: absolute;
+    inset: 5px;
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    background-color: #221f2f;
+}
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+#logo11{
+    font-size: 150px;
+    position: relative;
+    z-index: 10;
+    width: 150px;
 }

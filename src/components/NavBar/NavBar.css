@@ -15,7 +15,7 @@ body {
 :root {
     --mainColor: #29335c;
     --mainColorLight: #5767aa;
-    --secondaryColor: #db2b39;
+    --secondaryColor: #00abf0;
     --textColor: #eee;
 }
 .headhead{
@@ -37,10 +37,15 @@ nav a {
     margin: 0 1rem;
     color: var(--textColor);
     text-decoration: none;
-    padding-left: 60px;
+    margin-left: 60px;
 }
 
 nav a:hover {
+
+    animation: normal;
+    transition: 0.4s ease;
+}
+.navia:hover{
     color: var(--secondaryColor);
 }
 
@@ -55,7 +60,11 @@ header .nav-btn {
     opacity: 0;
     font-size: 1.8rem;
 }
-
+header .nav-btn:hover{
+    color: var(--secondaryColor);
+    animation: normal;
+    transition: 0.4s ease;
+}
 header div,
 nav {
     display: flex;
@@ -82,6 +91,15 @@ nav {
         background-color: #221f2f;
         transition: 1s;
     }
+    header nav::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+        filter: blur(120px);
+        z-index: -5;
+    }
 
     header .responsive_nav {
         transform: translateY(100vh);
@@ -97,5 +115,41 @@ nav {
         font-size: 1.5rem;
     padding-right: 60px;
     }
+    .regsignin{
+        margin-right: 110px;
+
+    }
 }
 
+.imggg1{
+    width: 200px;
+}
+.regsignin{
+    border: solid;
+    border-radius: 10px;
+    padding: 6px;
+    margin-left:100px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    border-width: 1px;
+}
+.regsignin:hover{
+    animation: normal;
+    transition: 0.4s ease;
+    text-decoration: none;
+    background: transparent;
+}
+.regsignout{
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 6px;
+    margin-left:10px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+}
+.regsignout:hover{
+
+    text-decoration: none;
+    background: transparent;
+    animation: normal;
+    transition: 0.4s ease;
+}

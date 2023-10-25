@@ -1,0 +1,194 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+
+}
+#fcompany{
+    margin-right: 40px;
+}
+
+footer{
+     background-color: #221f2f;
+     position: relative;
+     width: 100%;
+     min-height: 350px;
+     padding: 3rem 1rem;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     flex-direction: column;
+     border-top: solid;
+     border-color: white;
+     border-width: 1px;
+     z-index: 100;
+
+}
+footer::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    top: 5cap;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    filter: blur(200px);
+   
+    
+}
+
+.fcontain {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+.frow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ffcol{
+    min-width: 250px;
+    color: white;
+    font-family: poppins;
+    padding:0 2rem;
+}
+.ffcol .flogo{
+    width: 100px;
+    margin-bottom:25px;
+}
+.ffcol h3{
+    color:#00abf0;
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.ffcol h3::after{
+    content: '';
+    height:3px;
+    width:0px;
+    background-color: #00abf0;
+    position: absolute;
+    bottom: 0;
+    left:0;
+    transition: 0.3s ease;
+
+}
+.ffcol h3:hover::after{
+    width:30px
+}
+.ffcol .fsocial a i{
+    color:#00abf0;
+    margin-top:2rem;
+    margin-right: 5px;
+    transition: 0.3s ease;
+}
+.ffcol .fsocial a i:hover{
+    transform: scale(1.5);
+    filter:grayscale(25);
+}
+.ffcol .flink a{
+    display: block;
+    text-decoration: none;
+    color:#f2f2f2;
+    margin-bottom: 5px;
+    position: relative;
+    transition: 0.3s ease;
+}
+.ffcol .flink a::before{
+    content:'';
+    height: 16px;
+    width:3px;
+    position: absolute;
+    top:5px;
+    left:-10px;
+    background-color: #00abf0;
+    transition: 0.5s ease;
+    opacity: 0;
+}
+.ffcol .flink a:hover::before{
+    opacity: 1;
+}
+.ffcol .flink a:hover{
+    transform: translateX(-8px);
+    color:#00abf0;
+}
+.ffcol .contact-details{
+    display: inline-flex;
+    justify-content: space-between;
+}
+.ffcol .contact-details i{
+    margin-right:15px;
+    padding-bottom: 10px;
+}
+.frow .ffform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:2rem 0;
+}
+.frow .ffform .ffinput{
+    background-color: #1a1c20ff;
+    border:0;
+    outline:none;
+    padding:14px 20px;
+    border-radius: 6px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.ffform .fffbtn{
+    width: 60px;
+    margin-top: 10px;
+    border:0;
+    border-radius: 10px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+}
+.ffform .fffbtn:hover{
+    cursor: pointer;
+}
+.fabtnicon{
+    height: 30px;
+    padding-top: 5px;
+    align-items: center;
+    color: black;
+}
+.bottomline{
+    width: 100%;
+}
+.copyright{
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/********** Responsive Design ********/
+@media(max-width:900px)
+{
+  .frow{
+    flex-direction: column;
+  }
+  .ffcol{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+  }
+  .bottomline{
+    width: 90%;
+}
+}
+@media(max-width:768px)
+{
+  .frow{
+    flex-direction: column;
+  }
+  .ffcol{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+}
