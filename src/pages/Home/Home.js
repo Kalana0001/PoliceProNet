@@ -7,14 +7,16 @@ import Card2 from '../../components/atoms/Card2/Card2';
 import packimg1 from '../../Images/packimg1.png';
 import packimg2 from '../../Images/packimg2.png';
 import packimg3 from '../../Images/packimg3.png';
+import NavBar from '../../components/NavBar/NavBar';
 
 const Home=()=>{
 
     return(
-<span> 
+<span>
+<NavBar/>
 <div class="main">
         <div class="header1">
-            <a href="/" class="logo"><h2><i>PoliceProNet</i></h2></a>
+            <a href="/home" class="logo"><h2><i>PoliceProNet</i></h2></a>
         </div>
         <div  class="top-container">
             <div class="info-box" >
@@ -25,10 +27,6 @@ const Home=()=>{
                 Law enforcement's primary goal is to protect and serve our community through transparent communication. 
                 Our website offers vital resources and information on policing and public safety for the public.
                 </p>
-                <div class="info-buttons">
-                    <button class="info-btn selected" data-aos="fade-left">Explore</button>
-                    <button class="info-btn nav-btn" data-aos="fade-right">Create</button>
-                </div>
             </div>
             <div class="nft-box" >
                 <img src={badge1} class="nft-pic"/>
@@ -50,7 +48,7 @@ const Home=()=>{
                     <div class="likes">
                         <div class="icon-box">
                             <i class='bx bx-heart'></i>
-                            Hellllllo
+                                Welcome
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import { faEnvelope, faLocation } from '@fortawesome/free-solid-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import emailjs from '@emailjs/browser'
 import SocialIcon from '../../components/atoms/SocialIcon/SocialIcon';
+import NavBar from '../../components/NavBar/NavBar';
 
 function ContactUs() {
   const [isFocused, setIsFocused] = useState(false);
@@ -59,6 +60,8 @@ function ContactUs() {
 
 
     return (
+    <span>
+    <NavBar/>
     <span class="contcontall">
     <div class="concontainer">
       <span class="conbig-circle" ></span>
@@ -123,6 +126,7 @@ function ContactUs() {
         </div>
       </div>
     </div>
+    </span>
     </span>
     );
   }

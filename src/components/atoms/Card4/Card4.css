@@ -31,9 +31,10 @@
 .cdd2container .cdd2box-cdd2container .cdd2box{
     box-shadow: 0 5px 10px rgba(0,0,0,.2);
     border-radius: 5px;
-    background: #fff;
+    background-color: #352f49;
     text-align: center;
     padding:30px 20px;
+
 }
 
 .cdd2container .cdd2box-cdd2container .cdd2box img{
@@ -42,13 +43,13 @@
 }
 
 .cdd2container .cdd2box-cdd2container .cdd2box h3{
-    color:#444;
+    color:white;
     font-size: 22px;
     padding:10px 0;
 }
 
 .cdd2container .cdd2box-cdd2container .cdd2box p{
-    color:#777;
+    color: white;
     font-size: 15px;
     line-height: 1.8;
 }

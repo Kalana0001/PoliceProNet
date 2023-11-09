@@ -71,7 +71,40 @@ nav {
     align-items: center;
 }
 
-@media only screen and (max-width: 1024px) {
+.imggg1{
+    width: 200px;
+}
+.regsignin{
+    border: solid;
+    border-radius: 10px;
+    padding: 6px;
+    margin-left:100px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    border-width: 1px;
+}
+.regsignin:hover{
+    animation: normal;
+    transition: 0.4s ease;
+    text-decoration: none;
+    background: transparent;
+}
+.regsignout{
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 6px;
+    margin-left:100px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+}
+.regsignout:hover{
+
+    text-decoration: none;
+    background: transparent;
+    animation: normal;
+    transition: 0.4s ease;
+}
+
+@media only screen and (max-width: 1200px) {
     header .nav-btn {
         visibility: visible;
         opacity: 1;
@@ -119,37 +152,49 @@ nav {
         margin-right: 110px;
 
     }
+    .regsignout{
+        margin-right: 100px;
+    }
 }
 
-.imggg1{
-    width: 200px;
+@media(max-width: 1800px){
+    .regsignout{
+        font-size: 15px;
+    }
+    .regsignin{
+        font-size: 15px;
+    }
 }
-.regsignin{
-    border: solid;
-    border-radius: 10px;
-    padding: 6px;
-    margin-left:100px;
-    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
-    border-width: 1px;
+@media(max-width: 1335px){
+    .regsignout{
+        font-size: 12px;
+    }
+    .regsignin{
+        font-size: 12px;
+    }
+    nav a {
+        font-size: 12px;
+    }
 }
-.regsignin:hover{
-    animation: normal;
-    transition: 0.4s ease;
-    text-decoration: none;
-    background: transparent;
+@media(max-width: 1210px){
+    .regsignout{
+        font-size: 11px;
+    }
+    .regsignin{
+        font-size: 11px;
+    }
+    nav a {
+        font-size: 12px;
+    }
 }
-.regsignout{
-    border: solid;
-    border-width: 1px;
-    border-radius: 10px;
-    padding: 6px;
-    margin-left:10px;
-    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
-}
-.regsignout:hover{
-
-    text-decoration: none;
-    background: transparent;
-    animation: normal;
-    transition: 0.4s ease;
+@media(max-width: 1198.5px){
+    .regsignout{
+        font-size: 20px;
+    }
+    .regsignin{
+        font-size: 20px;
+    }
+    nav a {
+        font-size: 20px;
+    }
 }

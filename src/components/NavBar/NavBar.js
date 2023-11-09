@@ -18,12 +18,10 @@ function NavBar() {
         <header>
             <h3><img src={imgg1} className="imggg1" /></h3>
             <nav ref={navRef}>
-                <a href="/" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
+                <a href="/home" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
                 <a href="/dashboard" class='navia'><FontAwesomeIcon icon={faDashboard}/>Dashboard</a>
-                <a href="/about" class='navia'><FontAwesomeIcon icon={faUserFriends}/>About US</a>
                 <a href="/contactus" class='navia'><FontAwesomeIcon icon={faPhone}/>Contact US</a>
-                <a href="/register" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Sign in</a>
-                <a href="" class='regsignout'><FontAwesomeIcon icon={faRightFromBracket}/>Sign out</a>
+                <a href="/registerform" class='regsignout'><FontAwesomeIcon icon={faRightFromBracket}/>Sign out</a>
                 <button
                     className="nav-btn nav-close-btn"
                     onClick={showNavbar}>

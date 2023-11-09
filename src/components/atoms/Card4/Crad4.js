@@ -12,26 +12,26 @@ const Card4=()=>{
     
         <div class="cdd2box-cdd2container">
     
-            <div class="cdd2box">
+        <a href='/minortrafic'><div class="cdd2box">
                 <img src={img4} alt=""/>
-                <h3> Minor Traffic  </h3>
+                <h3 className='copmhead'> Minor Traffic  </h3>
                 <p> When your property has been damage or crash by someone and you wish to make a report.</p>
-                <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
-            </div>
+                <a href="/minortrafic" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
+            </div></a>
     
-            <div class="cdd2box">
+            <a href='/'> <div class="cdd2box">
                 <img src={img5} alt=""/>
-                <h3>Adult Sexual Assault</h3>
+                <h3 className='copmhead'>Adult Sexual Assault</h3>
                 <p>Supporting adult sexual assault survivors with SARO reporting and police follow-up.</p>
                 <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
-            </div>
+            </div></a>
     
-            <div class="cdd2box">
+            <a href='/'>  <div class="cdd2box">
                 <img src={img7} alt=""/>
-                <h3>License's hold details</h3>
+                <h3 className="copmhead">License's hold details</h3>
                 <p>If your license was unfairly suspended or put on hold, and you need to report or seek clarification.</p>
                 <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
-            </div>
+            </div></a>
             
         </div>
     

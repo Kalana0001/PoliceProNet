@@ -24,66 +24,42 @@ const Message=()=>{
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-box"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Product</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-list-ul"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Order list</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-pie-chart-alt-2"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-coin-stack"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Stock</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-book-alt"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Total order</span>
-          </a>
-        </li>
+ 
         <li>
           <a href="/payment">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
             <span class="links_name">Payments</span>
           </a>
         </li>
+
         <li>
           <a href="/message" class="active">
             <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
             <span class="links_name">Messages</span>
           </a>
         </li>
+
         <li>
           <a href="/profilesettings">
             <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
             <span class="links_name">Profile Settings</span>
           </a>
         </li>
+
         <li>
           <a href="/setting">
             <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
             <span class="links_name">Setting</span>
           </a>
         </li>
+
         <li class="log_out">
           <a href="#">
             <i class="bx bx-log-out"><FontAwesomeIcon icon={faBars}/></i>
             <span class="links_name">Log out</span>
           </a>
         </li>
+        
       </ul>
     </div>
     <section class="home-section">

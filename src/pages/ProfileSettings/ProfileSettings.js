@@ -1,15 +1,34 @@
 import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faSearch, faWallet, } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {supabase} from '../../Config/SupaBaseClient';
+import NavBar from '../../components/NavBar/NavBar';
 
 const ProfileSettings=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
-
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   };
 
+  const [userData, setUserData] = useState(null);
+
+
+  useEffect(() => {
+    async function getUserData() {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        setUserData(user);
+      } catch (error) {
+        console.error('Error getting user data:', error);
+      }
+    }
+
+    getUserData();
+  }, []);
+
     return(
+    <span>
+    <NavBar/>
     <div className="Dashboard"> 
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
@@ -23,66 +42,42 @@ const ProfileSettings=()=>{
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-box"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Product</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-list-ul"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Order list</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-pie-chart-alt-2"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-coin-stack"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Stock</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-book-alt"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Total order</span>
-          </a>
-        </li>
+
         <li>
           <a href="/payment">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
             <span class="links_name">Payments</span>
           </a>
         </li>
+
         <li>
           <a href="/message">
             <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
             <span class="links_name">Messages</span>
           </a>
         </li>
+
         <li>
           <a href="/profilesettings" class="active">
             <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
             <span class="links_name">Profile Settings</span>
           </a>
         </li>
+
         <li>
           <a href="/setting">
             <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
             <span class="links_name">Setting</span>
           </a>
         </li>
+
         <li class="log_out">
           <a href="#">
             <i class="bx bx-log-out"><FontAwesomeIcon icon={faBars}/></i>
             <span class="links_name">Log out</span>
           </a>
         </li>
+        
       </ul>
     </div>
     <section class="home-section">
@@ -103,52 +98,23 @@ const ProfileSettings=()=>{
       </nav>
 
       <div class="home-content">
-        <div class="overview-boxes">
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Order</div>
-              <div class="number">40,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bx-cart-alt cart"></i>
+      <div class="overview-boxes">
+      <div class="box">
+      {userData ? (
+          <div>
+            <p><strong>Name:</strong> {userData.full_name}</p>
+            <p><strong>Email:</strong> {userData.email}</p>
+
+            {/* Add more user data fields as needed */}
           </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Sales</div>
-              <div class="number">38,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-add cart two"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
-              </div>
-            </div>
-            <i class="bx bx-cart cart three"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
+        ) : (
+          <p>Loading user data...</p>
+        )}
         </div>
+      </div>
+      </div>
+
+      <div class="home-content">
 
         <div class="sales-boxes">
           <div class="recent-sales box">
@@ -156,6 +122,8 @@ const ProfileSettings=()=>{
             <div class="sales-details">
               <ul class="details">
                 <li class="topic">Date</li>
+                <li><a href="#">02 Jan 2021</a></li>
+                <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
@@ -200,9 +168,6 @@ const ProfileSettings=()=>{
                 <li><a href="#">$23.53</a></li>
                 <li><a href="#">$46.52</a></li>
               </ul>
-            </div>
-            <div class="button">
-              <a href="#">See All</a>
             </div>
           </div>
           <div class="top-sales box">
@@ -271,6 +236,7 @@ const ProfileSettings=()=>{
       </div>
     </section>
         </div>
+        </span>
     )
 }
 export default ProfileSettings;

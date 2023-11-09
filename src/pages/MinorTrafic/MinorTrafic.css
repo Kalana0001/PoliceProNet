@@ -1,0 +1,17 @@
+.crash-form{
+    max-width: 1480px;
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: rgb(203, 197, 197);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(107, 6, 250, 0.1); 
+}
+.alert-msg{
+    border: solid;
+    border-color: rgb(165, 4, 4);
+    background-color: rgb(191, 44, 44);
+    border-radius: 5px;
+}

@@ -2,6 +2,7 @@ import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faSea
 import './Dashboard.css';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NavBar from '../../components/NavBar/NavBar';
 
 const Dashboard=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -11,6 +12,8 @@ const Dashboard=()=>{
   };
 
     return(
+      <span>
+        <NavBar/>
     <div className="Dashboard"> 
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
@@ -18,72 +21,49 @@ const Dashboard=()=>{
         <span class="logo_name">PoliceProNet</span>
       </div>
       <ul class="nav-links">
+
         <li>
           <a href="/dashboard" class="active">
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-box"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Product</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-list-ul"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Order list</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-pie-chart-alt-2"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-coin-stack"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Stock</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="bx bx-book-alt"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Total order</span>
-          </a>
-        </li>
+
         <li>
           <a href="/payment">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
             <span class="links_name">Payments</span>
           </a>
         </li>
+
         <li>
           <a href="/message">
             <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
             <span class="links_name">Messages</span>
           </a>
         </li>
+
         <li>
           <a href="/profilesettings">
             <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
             <span class="links_name">Profile Settings</span>
           </a>
         </li>
+
         <li>
           <a href="/setting">
             <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
             <span class="links_name">Setting</span>
           </a>
         </li>
+
         <li class="log_out">
           <a href="#">
             <i class="bx bx-log-out"><FontAwesomeIcon icon={faBars}/></i>
             <span class="links_name">Log out</span>
           </a>
         </li>
+        
       </ul>
     </div>
     <section class="home-section">
@@ -105,50 +85,55 @@ const Dashboard=()=>{
 
       <div class="home-content">
         <div class="overview-boxes">
+
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Order</div>
+              <div class="box-topic">Add Profile Details</div>
               <div class="number">40,876</div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+                <a href='/home'><span class="text">Click To Visit</span></a>
               </div>
             </div>
             <i class="bx bx-cart-alt cart"></i>
           </div>
+
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Sales</div>
+              <div class="box-topic">View Licence Status</div>
               <div class="number">38,876</div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+                <a href='/home'><span class="text">Click To Visit</span></a>
               </div>
             </div>
             <i class="bx bxs-cart-add cart two"></i>
           </div>
+
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Total Profit</div>
+              <div class="box-topic">Payment</div>
               <div class="number">$12,876</div>
               <div class="indicator">
                 <i class="bx bx-up-arrow-alt"></i>
-                <span class="text">Up from yesterday</span>
+                <a href='/home'><span class="text">Click To Visit</span></a>
               </div>
             </div>
             <i class="bx bx-cart cart three"></i>
           </div>
-          <div class="box">
+
+          <a></a><div class="box">
             <div class="right-side">
               <div class="box-topic">Total Return</div>
               <div class="number">11,086</div>
               <div class="indicator">
                 <i class="bx bx-down-arrow-alt down"></i>
-                <span class="text">Down From Today</span>
+                <a href='/home'><span class="text">Click To Visit</span></a>
               </div>
             </div>
             <i class="bx bxs-cart-download cart four"></i>
           </div>
+
         </div>
 
         <div class="sales-boxes">
@@ -157,6 +142,8 @@ const Dashboard=()=>{
             <div class="sales-details">
               <ul class="details">
                 <li class="topic">Date</li>
+                <li><a href="#">02 Jan 2021</a></li>
+                <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
                 <li><a href="#">02 Jan 2021</a></li>
@@ -272,6 +259,7 @@ const Dashboard=()=>{
       </div>
     </section>
         </div>
+        </span>
     )
 }
 export default Dashboard;

@@ -1,161 +1,273 @@
 import './RegisterForm.css';
+import React, { useState } from 'react';
+import { supabase } from '../../Config/SupaBaseClient';
+import NavBar from '../../components/NavBar/NavBar';
+
 
 const RegisterForm=()=>{
 
+  const[Fname,setFname]=useState('')
+  const[Lname,setLname]=useState('')
+  const[Address,setAddress]=useState('')
+  const[NIC,setNIC]=useState('')
+  const[Contact_No,setContact]=useState('')
+  const[Postal_Code,setPcode]=useState('')
+  const[Age,setAge]=useState('')
+  const[DOB,setDOB]=useState('')
+  const [Province, setProvince] = useState('');
+  const [State, setState] = useState('');
+  const [Gender, setGender] = useState('');
+  const [Full_Name, setFullName] = useState('');
+
+  
+  const[formError,setFormError]=useState('')
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+
+    if(!Fname || !Lname || !Full_Name|| !Address || !NIC || !Contact_No || !Postal_Code || !Age || !DOB){
+      setFormError('Please fill in all the fields correctly')
+      return
+    }
+    const {data, error}=await supabase
+    .from('People')
+    .insert([{Fname,Lname,Full_Name,Address,NIC,Contact_No,Postal_Code,Age,DOB,Province,State,Gender}])
+
+    if(error){
+      console.log(error)
+      setFormError('Please fill in all the fields correctly')
+    }
+    if(data){
+      console.log(data)
+      setFormError(null)
+    }
+  }
+
+
     return(
+      <span>
+        <NavBar/>
         <div class="rgiregiall">
         <div class="r2wrapper">
         <span class="regbig-circle" ></span>
         <div class="r2title">User Registration Form
         </div>
-        <form action="POST" data-netlify="true">
+        <form action="POST" data-netlify="true" id="myForm" onSubmit={handleSubmit}>
           <div class="r2form">
     
             <div class="r2inputfield">
-              <label class="r2lbl">First Name</label>
-              <input type="text" class="input" id="name" name="fname" placeholder="Enter first name" maxlength="30"
-                pattern="[A-Za-z]{1,32}" title="Enter only alphabets" required/>
+              <label class="r2lbl">*First Name</label>
+
+              <input 
+              type="text" 
+              class="input" 
+              placeholder="Enter first name" 
+              maxlength="30"
+              pattern="[A-Za-z]{1,32}" 
+              title="Enter only alphabets" 
+              required
+              id='Fname'
+              value={Fname}
+              onChange={(e)=> setFname(e.target.value)}
+              />
             </div>
     
             <div class="r2inputfield">
-              <label class="r2lbl">Last Name</label>
-              <input type="text" class="input" id="name" name="lname" placeholder="Enter last name" maxlength="30"
-                pattern="[A-Za-z]{1,32}" title="Enter only alphabets" required/>
+              <label class="r2lbl">*Last Name</label>
+              <input 
+              type="text" 
+              class="input"  
+              placeholder="Enter last name" 
+              maxlength="30"
+              pattern="[A-Za-z]{1,32}" 
+              title="Enter only alphabets"
+              id='Lname'
+              value={Lname}
+              onChange={(e)=> setLname(e.target.value)}
+              required/>
+            </div>
+
+            <div class="r2inputfield">
+              <label class="r2lbl">*Full Name</label>
+              <input 
+              type="text" 
+              class="input"  
+              placeholder="Enter Full name" 
+              maxlength="30"
+              title="Enter only alphabets"
+              id='Full_Name'
+              value={Full_Name}
+              onChange={(e)=> setFullName(e.target.value)}
+              required/>
             </div>
     
-            <div class="r2inputfield" id="gender">
-              <label for="" class="r2lbl">Gender</label>
-              <input type="radio" name="gender" id="radio" value="Male"/><p class='regisex'>Male</p>
-              <input type="radio" name="gender" id="radio" value="Female"/><p class='regisex'>Female</p>
+            <div class="r2inputfield" id="Gender" onChange={(e)=> setGender(e.target.value)}>
+              <label for="" class="r2lbl">*Gender</label>
+
+              <input 
+              type="radio" 
+              name="gender" 
+              id="radio" 
+              value="Male"/>
+              <p class='regisex'>Male</p>
+
+              <input 
+              type="radio" 
+              name="gender" 
+              id="radio" 
+              value="Female"
+              /><p class='regisex'>Female</p>
             </div>
     
             <div class="r2inputfield">
-              <label for="" class="r2lbl">Age</label>
-              <input type="text" class="input" name="age" placeholder="Enter your age" maxlength="2" pattern="^[0-9]{2}$"
-                required  title="Enter numbers only"/>
+              <label for="" class="r2lbl">*Age</label>
+              <input 
+              type="text" 
+              class="input" 
+              placeholder="Enter your age" 
+              maxlength="2" 
+              pattern="^[0-9]{2}$"
+              required  
+              title="Enter numbers only"
+              id='Age'
+              value={Age}
+              onChange={(e)=> setAge(e.target.value)}
+              />
             </div>
     
             <div class="r2inputfield">
-              <label for="" class="r2lbl">Date of Birth</label>
-              <input type="date" class="input" name="dob" required/>
-            </div>
-    
-            <div class="r2inputfield">
-              <label class="r2lbl">Email Address</label>
-              <input type="email" class="input" name="email" placeholder="Enter your email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" required/>
-            </div>
-    
-            <div class="r2inputfield">
-              <label class="r2lbl">Password</label>
-              <input type="password" class="input" id="password" name="" placeholder="Enter your password min 8 characters"
-                autocomplete="off" onkeyup='check()' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                maxlength="100" minlength="8" required/>
-            </div>
-    
-            <div class="r2inputfield">
-              <label class="r2lbl">Confirm Password</label>
-              <input type="password" onkeyup='check()' class="input" id="confirm-password" name=""
-                placeholder="Confirm password" autocomplete="off" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                maxlength="100" minlength="8" required/>
+              <label for="" class="r2lbl">*Date of Birth</label>
+              <input 
+              type="date" 
+              class="input" 
+              required
+              id='DOB'
+              value={DOB}
+              onChange={(e)=> setDOB(e.target.value)}
+              />
             </div>
     
             <p id="message"></p>
     
             <div class="r2inputfield">
-              <label for="" class="r2lbl">Phone Number</label>
-              <div class="custom-select" id="phone-codes">
-                <select id="phone-code">
-                  <option value="+91">+91</option>
-                </select>
-              </div>
-              <input type="tel" class="input" name="phone-number" maxlength="10" id="phone-number"
-                placeholder="Enter your phone number" pattern="[7-9]{1}[0-9]{9}" title="Please enter valid phone number"/>
+              <label for="" class="r2lbl">*NIC No</label>
+
+              <input 
+              type="tel" 
+              class="input"   
+              placeholder="Enter your NIC number" 
+              title="Please enter valid NIC number"
+              id='NIC'
+              value={NIC}
+              onChange={(e)=> setNIC(e.target.value)}
+              />
+            </div>
+
+            <div class="r2inputfield">
+              <label for="" class="r2lbl">*Phone Number</label>
+
+              <input 
+              type="text" 
+              class="input"  
+              maxlength="10" 
+              placeholder="Enter your phone number" 
+              title="Please enter valid phone number"
+              id='Contact_No'
+              value={Contact_No}
+              onChange={(e)=> setContact(e.target.value)}
+              />
             </div>
     
             <div class="r2inputfield">
-              <label class="r2lbl">Address</label>
-              <textarea class="textarea" name="address" id="" cols="30" rows="5" placeholder="Enter your address"
-                pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" maxlength="100" required></textarea>
+              <label class="r2lbl">*Address</label>
+              <textarea 
+              class="textarea" 
+              cols="30" 
+              rows="5" 
+              placeholder="Enter your address"
+              pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
+              maxlength="100" 
+              required
+              id='Address'
+              value={Address}
+              onChange={(e)=> setAddress(e.target.value)}
+              >
+              </textarea>
             </div>
-    
+
             <div class="r2inputfield">
-              <label class="r2lbl">State</label>
+              <label class="r2lbl">*Province</label>
               <div class="custom_select">
-                <select id="state" name="state" required>
-                  <option value="">--Select your state--</option>
-                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                  <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                  <option value="Assam">Assam</option>
-                  <option value="Bihar">Bihar</option>
-                  <option value="Chandigarh">Chandigarh</option>
-                  <option value="Chhattisgarh">Chhattisgarh</option>
-                  <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                  <option value="Daman and Diu">Daman and Diu</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Goa">Goa</option>
-                  <option value="Gujarat">Gujarat</option>
-                  <option value="Haryana">Haryana</option>
-                  <option value="Himachal Pradesh">Himachal Pradesh</option>
-                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                  <option value="Jharkhand">Jharkhand</option>
-                  <option value="Karnataka">Karnataka</option>
-                  <option value="Kerala">Kerala</option>
-                  <option value="Ladakh">Ladakh</option>
-                  <option value="Lakshadweep">Lakshadweep</option>
-                  <option value="Madhya Pradesh">Madhya Pradesh</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Manipur">Manipur</option>
-                  <option value="Meghalaya">Meghalaya</option>
-                  <option value="Mizoram">Mizoram</option>
-                  <option value="Nagaland">Nagaland</option>
-                  <option value="Odisha">Odisha</option>
-                  <option value="Puducherry">Puducherry</option>
-                  <option value="Punjab">Punjab</option>
-                  <option value="Rajasthan">Rajasthan</option>
-                  <option value="Sikkim">Sikkim</option>
-                  <option value="Tamil Nadu">Tamil Nadu</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Tripura">Tripura</option>
-                  <option value="Uttar Pradesh">Uttar Pradesh</option>
-                  <option value="Uttarakhand">Uttarakhand</option>
-                  <option value="West Bengal">West Bengal</option>
+                <select id="Province" name="Province"  onChange={(e)=> setProvince(e.target.value)}  required>
+                  <option value="">--Select your province--</option>
+                  <option value="Central Province">Central Province</option>
+                  <option value="Eastern Province">Eastern Province</option>
+                  <option value="North Central Province">North Central Province</option>
+                  <option value="Northern Province">Northern Province</option>
+                  <option value="North Western Province">North Western Province</option>
+                  <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
+                  <option value="Southern Province">Southern Province</option>
+                  <option value="Uva Province">Uva Province</option>
+                  <option value="Western Province">Western Province</option>
                 </select>
               </div>
             </div>
     
             <div class="r2inputfield">
-              <label class="r2lbl">Pin Code</label>
-              <input type="text" class="input" name="pincode" placeholder="Enter your pin code" maxlength="6"
-                pattern="^[0-9]{6}$" required/>
-            </div>
-    
-            <div class="r2inputfield" id="hobbies" >
-              <label for="" class="r2lbl">Hobbies</label>
-              <div class="hobbies" >
-                <input type="checkbox" name="Hobbies" id="" value="Music"/>
-                <label for="">Music</label>
-                <input type="checkbox" name="Hobbies" id="" value="Movies"/>
-                <label for="">Movies</label>
-                <input type="checkbox" name="Hobbies" id="" value="Sports"/>
-                <label for="">Sports</label>
-                <input type="checkbox" name="Hobbies" id="" value="Travel"/>
-                <label for="">Travel</label>
+              <label class="r2lbl">*State</label>
+              <div class="custom_select">
+                <select id="State" name="State"  onChange={(e)=> setState(e.target.value)} required>
+                  <option value="">--Select your state--</option>
+                  <option value="Ampara">Ampara</option>
+                  <option value="Anuradhapura">Anuradhapura</option>
+                  <option value="Badulla">Badulla</option>
+                  <option value="Batticloa">Batticloa</option>
+                  <option value="Colombo">Colombo</option>
+                  <option value="Galle">Galle</option>
+                  <option value="Gampaha">Gampaha</option>
+                  <option value="Hambantota">Hambantota</option>
+                  <option value="Jafna">Jafna</option>
+                  <option value="Kalutara">Kalutara</option>
+                  <option value="Kandy">Kandy</option>
+                  <option value="Kegalle">Kegalle</option>
+                  <option value="Kilinochchi">Kilinochchi</option>
+                  <option value="Kurunegala">Kurunegala</option>
+                  <option value="Mannar">Mannar</option>
+                  <option value="Matale">Matale</option>
+                  <option value="Matara">Matara</option>
+                  <option value="Monaragala">Monaragala</option>
+                  <option value="Mullaitivu">Mullaitivu</option>
+                  <option value="Nuwara Eliya">Nuwara Eliya</option>
+                  <option value="Polonnaruwa">Polonnaruwa</option>
+                  <option value="Puttalam">Puttalam</option>
+                  <option value="Ratnapura">Ratnapura</option>
+                  <option value="Trincomalee">Trincomalee</option>
+                  <option value="Vauniya">Vauniya</option>
+                </select>
               </div>
             </div>
     
             <div class="r2inputfield">
-              <label class="r2lbl">Upload Photo</label><p id="file-size">*Max size 100kb.</p>
-              <input type="file" name="myfile" id="myfile" placeholder="Upload your photo" rows="7" required />
-              
+              <label class="r2lbl">Postal Code</label>
+              <input 
+              type="text" 
+              class="input" 
+              placeholder="Enter your postal code" 
+              maxlength="6"
+              required
+              id='Postal_Code'
+              value={Postal_Code}
+              onChange={(e)=> setPcode(e.target.value)}
+              />
             </div>
     
             <div class="r2inputfield terms">
               <label id="check" class="r2lbl">
-                <input type="checkbox" name="check" value="Declared" required/>
+                <input 
+                type="checkbox" 
+                name="check" 
+                value="Declared" 
+                required/>
                 <span class="checkmark"></span>
               </label>
               <p class='regiregip1'>I hereby declare that the above information provided is true and correct.</p>
@@ -166,14 +278,23 @@ const RegisterForm=()=>{
             </div>
     
             <div class="r2inputfield btns" id="r2btn">
-              <button type="submit" value="Register" class="r2btn" onclick="checkPassword()">Register</button>
-              <button type="reset" value="Reset" class="r2btn">Reset</button>
+              <button 
+              type="submit" 
+              value="Register" class="r2btn" 
+              onclick="checkPassword()">Submit</button>
+
+              <button 
+              type="reset" 
+              value="Reset" 
+              class="r2btn">Reset</button>
             </div>
     
           </div>
+          {formError && <p className="error">{formError}</p>}
         </form>
       </div>
-          </div>
+      </div>
+      </span>
     )
 }
 export default RegisterForm;

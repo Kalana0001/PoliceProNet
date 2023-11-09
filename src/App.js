@@ -18,16 +18,18 @@ import Message from './pages/Message/Message';
 import Setting from './pages/Setting/Setting';
 import Complaints from './pages/Complaints/Complaints';
 import LostProperty from './pages/LostProperty/LostProperty';
+import MinorTrafic from './pages/MinorTrafic/MinorTrafic';
+import Landing from './pages/Landing/Landing';
 
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar/>
           <main>
             <Routes>
-              <Route path='/' element={<Home/>}/>
+              <Route path='/' element={<Landing/>}/>
+              <Route path='/home' element={<Home/>}/>
               <Route path='/dashboard' element={<Dashboard/>}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/contactus' element={<ContactUs/>}/>
@@ -46,6 +48,7 @@ function App() {
               <Route path='/setting' element={<Setting/>}/>
               <Route path='/complaints' element={<Complaints/>}/>
               <Route path='/lostproperty' element={<LostProperty/>}/>
+              <Route path='/minortrafic' element={<MinorTrafic/>}/>
             </Routes>
           </main>
           <Footer/>

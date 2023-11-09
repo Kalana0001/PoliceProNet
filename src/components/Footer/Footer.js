@@ -1,9 +1,8 @@
-import { faFacebook, faInstagram, faLinkedin, faTelegram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import {faTelegram } from '@fortawesome/free-brands-svg-icons';
 import logo1 from '../../Images/logo11.png';
 import './Footer.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { createEvent } from '@testing-library/react';
-import { faArrowAltCircleRight,faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons';
 import SocialIcon from '../atoms/SocialIcon/SocialIcon';
 
 const Footer=()=>{
@@ -26,18 +25,18 @@ const Footer=()=>{
                   <div class="ffcol" id="fservice">
                      <h3>Services</h3>
                      <div class="flink">
-                        <a href="#">Illustration</a>
-                        <a href="#">Creatives</a>
-                        <a href="#">Poster Design</a>
-                        <a href="#">Card Design</a>
+                        <a href="/teleindex">Telephone Index</a>
+                        <a href="/emergency">Police Emergency</a>
+                        <a href="/news">News</a>
+                        <a href="/complaints">Online Complaints</a>
                      </div>
                   </div>
 
                   <div class="ffcol" id="useful-links">
                      <h3>Links</h3>
                      <div class="flink">
-                        <a href="#">About</a>
-                        <a href="#">Services</a>
+                        <a href="/">Home</a>
+                        <a href="/about">About</a>
                         <a href="#">Our Policy</a>
                         <a href="#">Help</a>
                      </div>

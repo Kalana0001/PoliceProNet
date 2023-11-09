@@ -134,6 +134,7 @@ footer::before{
 }
 .frow .ffform .ffinput{
     background-color: #1a1c20ff;
+    color: white;
     border:0;
     outline:none;
     padding:14px 20px;

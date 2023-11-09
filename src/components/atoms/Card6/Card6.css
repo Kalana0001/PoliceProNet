@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+.cdd6container {
+    padding: 15px 3%;
+    padding-bottom: 100px;
+}
+
+.cdd6container .cdd2heading {
+    text-align: center;
+    padding-bottom: 15px;
+    color: #fff;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    font-size: 50px;
+}
+
+.cdd6container .cdd6box-cdd6container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 15px;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    background-color: #352f49;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box img {
+    height: 250px;
+    border-radius: 10px;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box h3 {
+    color: #fff;
+    font-size: 22px;
+    padding: 10px 0;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box p {
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box .cdd2btn {
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #352f49;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 5px;
+    padding: 8px 25px;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box .cdd2btn:hover {
+    letter-spacing: 1px;
+}
+
+.cdd6container .cdd6box-cdd6container .cdd6box:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .3);
+    transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+    .cdd6container {
+        padding: 20px;
+    }
+
+    .cdd6container .cdd6box-cdd6container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 10px;
+    }
+}
+
+/* Add more button styles as needed */
+@keyframes motionAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
