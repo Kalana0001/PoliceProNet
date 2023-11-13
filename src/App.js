@@ -20,11 +20,13 @@ import Complaints from './pages/Complaints/Complaints';
 import LostProperty from './pages/LostProperty/LostProperty';
 import MinorTrafic from './pages/MinorTrafic/MinorTrafic';
 import Landing from './pages/Landing/Landing';
+import { AuthProvider } from './components/AuthContext';
 
 
 function App() {
   return (
     <div className="App">
+      <AuthProvider>
       <BrowserRouter>
           <main>
             <Routes>
@@ -53,6 +55,7 @@ function App() {
           </main>
           <Footer/>
       </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
