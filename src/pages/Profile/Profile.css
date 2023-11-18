@@ -1,0 +1,124 @@
+
+.profaCard {
+    position: relative;
+    height: 560px;
+    width: 700px;
+    background-color: #fff;
+    margin: 100px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profheader {
+    position: absolute;
+    height: 220px;
+    width: 95%;
+    margin:0 auto;
+    left: 0;
+    right: 0;
+    top: -30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(to right, black, blue);
+}
+
+.profheader img {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    left: 90px;
+    top: 22px;
+}
+
+.profh3 {
+    position: absolute;
+    font-family: sans-serif;
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    top: 118px;
+    left: 90px;
+}
+
+.profp {
+    position: absolute;
+    font-family: sans-serif;
+    color: rgb(236, 233, 233);
+    font-size: 13px;
+    top: 166px;
+    left: 90px
+}
+
+.profabody {
+    position: absolute;
+    height: 126px;
+    left: 5px;
+    right: 5px;
+    top: 52%;
+    border-radius: 12px;
+}
+
+
+.proful {
+    position: absolute;
+    list-style: none;
+    display: block;
+    height: 40px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: transparent;
+    transition: all .3s ease-in-out;
+
+}
+
+
+.profah33 {
+    top: -17px;
+    left: 58px;
+    color: black;
+    position: relative;
+    
+}
+
+.profapara {
+    top: 14px;
+    left: 59px;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: black;
+    position: absolute;
+}
+
+#profh3i2{
+    top: 60px;
+}
+#profh3i3{
+    top: 110px;
+}
+
+
+.proffooter {
+    position: absolute;
+    height: 80px;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    border-radius: 12px;
+    width:95%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(to right, black, blue);
+}
+
+.proffooter ul {
+    position: absolute;
+    left: -60px;
+}
+
+
+
+
+
+

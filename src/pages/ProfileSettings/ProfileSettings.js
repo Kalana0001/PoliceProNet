@@ -11,6 +11,7 @@ const ProfileSettings=()=>{
   };
 
   const [userData, setUserData] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
 
   useEffect(() => {
@@ -18,6 +19,18 @@ const ProfileSettings=()=>{
       try {
         const { data: { user } } = await supabase.auth.getUser();
         setUserData(user);
+
+        console.log(user)
+        let { data: profiles, error } = await supabase
+  .from('profiles')
+  .select("*")
+  .eq('id', user.id)
+
+  console.log(profiles)
+  setUserProfile(...profiles)
+  console.log(userProfile)
+
+      
       } catch (error) {
         console.error('Error getting user data:', error);
       }
@@ -102,13 +115,17 @@ const ProfileSettings=()=>{
       <div class="box">
       {userData ? (
           <div>
-            <p><strong>Name:</strong> {userData.full_name}</p>
+            <p><strong>Name:</strong> {userProfile?.username}</p>
             <p><strong>Email:</strong> {userData.email}</p>
+            <p><strong>Id:</strong> {userData.id}</p>
 
             {/* Add more user data fields as needed */}
           </div>
         ) : (
-          <p>Loading user data...</p>
+          <div className="spinner ">
+          <span>Loading...</span>
+          <div className="half-spinner"></div>
+        </div>
         )}
         </div>
       </div>

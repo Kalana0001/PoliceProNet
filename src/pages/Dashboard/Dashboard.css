@@ -328,7 +328,7 @@ nav .profile-details i{
 
 /* Right box */
 .home-content .sales-boxes .top-sales{
-  width: 35%;
+  width: 45%;
   background: #fff;
   padding: 20px 30px;
   margin: 0 20px 0 0;
@@ -451,4 +451,54 @@ nav .profile-details i{
     left: 60px;
     width: calc(100% - 60px);
   }
+}
+.profah31{
+  text-align: center;
+  color: white;
+
+}
+.profheader img {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  border: solid;
+
+}
+.profheader{
+  border: solid;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #221f2f;
+}
+.profheader1{
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.profh3{
+  text-align: center;
+  color: white;
+}
+.profp{
+  text-align: center;
+}
+.profadata{
+  margin-top: 10px;
+}
+.profap{
+  border: solid;
+  border-radius: 10px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding-left: 10px;
+  background-color: #3f3c4e;
+  color: white;
+  height: 100%;
+  width: 100%;
+  
+}
+.profap1{
+  padding-left: 12px;
+  font-size: 19px;
 }

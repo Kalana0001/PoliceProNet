@@ -34,7 +34,7 @@ function SignIn() {
         }
       )
       if (error) throw error
-      console.log(data)
+      console.log('Sign-in successful:',data)
       navigate('/home')
 
     }catch(error){

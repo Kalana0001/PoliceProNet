@@ -9,7 +9,7 @@ import NavBar2 from '../../components/NavBar2/NavBar2';
 
 function Register() {
   // Use state to control the CSS class for the container
-  const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [isSignUpMode, setIsSignUpMode] = useState(true);
 
   // Event handler for Sign Up button click
   const handleSignUpClick = () => {

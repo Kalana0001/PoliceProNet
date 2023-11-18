@@ -20,7 +20,7 @@ function NavBar2() {
             <nav ref={navRef}>
                 <a href="/" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
                 <a href="/register" class='navia'><FontAwesomeIcon icon={faDashboard}/>Dashboard</a>
-                <a href="/dashboard" class='navia'><FontAwesomeIcon icon={faUserFriends}/>About US</a>
+                <a href="/about" class='navia'><FontAwesomeIcon icon={faUserFriends}/>About US</a>
                 <a href="/register" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Sign in</a>
                 <button
                     className="nav-btn nav-close-btn"

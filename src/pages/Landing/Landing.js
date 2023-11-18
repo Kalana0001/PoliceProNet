@@ -21,7 +21,7 @@ const Landing=()=>{
         <div  class="top-container">
             <div class="info-box" >
                 <p class="header"   >
-                Empowering Communities Through Policing Excellence: <span className='homeheadhead'><i>'Welcome to PoliceProNet."</i></span>
+                Empowering Communities Through Policing Excellence:
                 </p>
                 <p class="info-text">
                 Law enforcement's primary goal is to protect and serve our community through transparent communication. 
@@ -29,7 +29,7 @@ const Landing=()=>{
                 </p>
                 <div class="info-buttons">
                     <a href='/register'><button class="info-btn selected" data-aos="fade-left">Explore</button></a>
-                    <a href='/register'><button class="info-btn nav-btn" data-aos="fade-right">Create</button></a>
+                    <a href='/home'><button class="info-btn nav-btn" data-aos="fade-right">Create</button></a>
                 </div>
             </div>
             <div class="nft-box" >
@@ -65,8 +65,6 @@ const Landing=()=>{
             <p class="header" data-aos="fade-left">Getting Started</p>
             <p class="info-text" data-aos="fade-right">Buy and Sell NFTs from the world's top artists</p>
             <p class="e-seeve-head">E-Services</p>
-            <Card1/>
-            <Card2/>
             <div class="items-box">
                 <div class="item-container" >
                     <div class="item" >

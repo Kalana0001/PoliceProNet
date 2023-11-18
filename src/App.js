@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Register from './pages/Register/Register';
@@ -20,6 +19,11 @@ import Complaints from './pages/Complaints/Complaints';
 import LostProperty from './pages/LostProperty/LostProperty';
 import MinorTrafic from './pages/MinorTrafic/MinorTrafic';
 import Landing from './pages/Landing/Landing';
+import User from './components/User';
+import DamageGraffiti from './pages/DamageGraffiti/DamageGraffiti';
+import SexOffenderForm from './pages/SexOffenderForm/SexOffenderForm';
+
+
 
 
 function App() {
@@ -45,10 +49,13 @@ function App() {
               <Route path='/profilesettings' element={<ProfileSettings/>}/>
               <Route path='/payment' element={<Payment/>}/>
               <Route path='/message' element={<Message/>}/>
-              <Route path='/setting' element={<Setting/>}/>
+              <Route path='/prr' element={<Setting/>}/>
               <Route path='/complaints' element={<Complaints/>}/>
               <Route path='/lostproperty' element={<LostProperty/>}/>
               <Route path='/minortrafic' element={<MinorTrafic/>}/>
+              <Route path='/user' element={<User/>}/>
+              <Route path='/damagegraffiti' element={<DamageGraffiti/>}/>
+              <Route path='/sexoffender' element={<SexOffenderForm/>}/>
             </Routes>
           </main>
           <Footer/>

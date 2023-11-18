@@ -27,11 +27,11 @@ const Card3=()=>{
                 <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
             </div></a>
     
-            <a href='/'> <div class="cdd2box">
+            <a href='/damagegraffiti'> <div class="cdd2box">
                 <img src={img3} alt=""/>
                 <h3 className='copmhead'>Interntional Damage or Graffiti</h3>
                 <p>Supporting adult sexual assault survivors with SARO reporting and police follow-up.</p>
-                <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
+                <a href='/damagegraffiti' class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
             </div></a>
             
         </div>

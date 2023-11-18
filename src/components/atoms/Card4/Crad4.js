@@ -19,11 +19,11 @@ const Card4=()=>{
                 <a href="/minortrafic" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
             </div></a>
     
-            <a href='/'> <div class="cdd2box">
+            <a href='/sexoffender'> <div class="cdd2box">
                 <img src={img5} alt=""/>
                 <h3 className='copmhead'>Adult Sexual Assault</h3>
                 <p>Supporting adult sexual assault survivors with SARO reporting and police follow-up.</p>
-                <a href="#" class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
+                <a href='/sexoffender' class="cdd2btn  motion-button"><FontAwesomeIcon icon={faArrowRight}/> Go To Link</a>
             </div></a>
     
             <a href='/'>  <div class="cdd2box">

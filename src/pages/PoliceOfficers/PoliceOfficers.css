@@ -1,0 +1,92 @@
+/* TableComponent.css */
+
+.poftable-container {
+    margin: 20px;
+  }
+  
+  .poftable {
+    width: 100%;
+    margin-top: 20px;
+    
+    border-color: white;
+  }
+  
+  .potd {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: white;
+    border-radius: 10px;
+  }
+
+  .poth {
+    background:#333;
+    height: 60px;
+    color: white;
+    border-radius: 10px;
+    border: solid;
+    border-width: 2px;
+  }
+  .pohead{
+    background:#333;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    border: solid;
+  }
+  .pofload{
+    color:#00abf0;
+    font-size: 30px;
+  }
+  .spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+  
+  .spinner span {
+    font-size: 2rem;
+    animation: fade 1s linear 0s infinite;
+    padding-right: 1rem;
+  }
+  
+  .half-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #00abf0;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.5s linear 0s infinite;
+  }
+  
+  
+  @keyframes bigger {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(2);
+    }
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
