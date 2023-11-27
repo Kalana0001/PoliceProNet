@@ -1,47 +1,61 @@
 
 import React, { useState } from 'react';
-import { supabase } from '../../Config/SupaBaseClient';
 import NavBar from '../../components/NavBar/NavBar';
-import './SexOffenderForm.css'
+import './SexOffenderForm.css';
+import { supabase } from '../../Config/SupaBaseClient';
 
 
-const SexOffenderForm=()=>{
+const SexOffenderForm = () => {
+  const [type, setType] = useState('');
+  const [full_name, setfullname] = useState('');
+  const [gender, setgender] = useState('');
+  const [age, setage] = useState('');
+  const [dob, setdob] = useState('');
+  const [nic, setnic] = useState('');
+  const [contact_no, setcontact] = useState('');
+  const [rtp, setrtp] = useState('');
+  const [address, setaddress] = useState('');
+  const [aditionalinfo, setaditionalinfo] = useState('');
+  const [formError, setFormError] = useState('');
 
-  const[Fname,setFname]=useState('')
-  const[Lname,setLname]=useState('')
-  const[Address,setAddress]=useState('')
-  const[NIC,setNIC]=useState('')
-  const[Contact_No,setContact]=useState('')
-  const[Postal_Code,setPcode]=useState('')
-  const[Age,setAge]=useState('')
-  const[DOB,setDOB]=useState('')
-  const [Province, setProvince] = useState('');
-  const [State, setState] = useState('');
-  const [Gender, setGender] = useState('');
-  const [Full_Name, setFullName] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    if (!type || !full_name || !gender || !age || !dob || !nic || !contact_no || !rtp || !address || !aditionalinfo) {
+      setFormError('Please fill in all the fields correctly');
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('AdultSexual')
+        .insert([{type,full_name,gender,age,dob,nic,contact_no,address,aditionalinfo }]);
+
+      if (error) {
+        console.log(error);
+        setFormError('An error occurred while submitting the form. Please try again.');
+      }
+
+      if (data) {
+        console.log(data);
+        setFormError(null);
+        // Reset the form after successful submission
+        setType('');
+        setfullname('');
+        setgender('');
+        setage('');
+        setdob('');
+        setnic('');
+        setcontact('');
+        setrtp('');
+        setaddress('');
+        setaditionalinfo('');
+      }
+    } catch (error) {
+      console.error('Error inserting data:', error.message);
+      setFormError('An error occurred while submitting the form. Please try again.');
+    }
   
-  const[formError,setFormError]=useState('')
-
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
-
-    if(!Fname || !Lname || !Full_Name|| !Address || !NIC || !Contact_No || !Postal_Code || !Age || !DOB){
-      setFormError('Please fill in all the fields correctly')
-      return
-    }
-    const {data, error}=await supabase
-    .from('People')
-    .insert([{Fname,Lname,Full_Name,Address,NIC,Contact_No,Postal_Code,Age,DOB,Province,State,Gender}])
-
-    if(error){
-      console.log(error)
-      setFormError('Please fill in all the fields correctly')
-    }
-    if(data){
-      console.log(data)
-      setFormError(null)
-    }
   }
 
 
@@ -79,13 +93,14 @@ const SexOffenderForm=()=>{
         <div class="r2title">Sex Offender Community Disclosure Scheme
         </div>
         <form action="POST" data-netlify="true" id="myForm" onSubmit={handleSubmit}>
+
           <div class="r2form">
 
-          <div class="r2inputfield">
+               <div class="r2inputfield">
               <label class="r2lbl" >*Type</label>
               <div class="custom_select" >
-                <select id="Province" name="Province"  onChange={(e)=> setProvince(e.target.value)}  required>
-                  <option value="">--Select your province--</option>
+                <select id="type" name="type"  onChange={(e)=> setType(e.target.value)}  required>
+                  <option value="">--Select your Type--</option>
                   <option value="Adult">Adult</option>
                   <option value="Child">Child</option>
                   <option value="Girl/Lady">Girl/Lady</option>
@@ -93,6 +108,7 @@ const SexOffenderForm=()=>{
                 </select>
               </div>
             </div>
+            
 
             <div class="r2inputfield">
               <label class="r2lbl">*Full Name</label>
@@ -102,13 +118,13 @@ const SexOffenderForm=()=>{
               placeholder="Enter Full name" 
               maxlength="30"
               title="Enter only alphabets"
-              id='Full_Name'
-              value={Full_Name}
-              onChange={(e)=> setFullName(e.target.value)}
+              id='full_name'
+              value={full_name}
+              onChange={(e)=> setfullname(e.target.value)}
               required/>
             </div>
     
-            <div class="r2inputfield" id="Gender" onChange={(e)=> setGender(e.target.value)}>
+            <div class="r2inputfield" id="gender" onChange={(e)=> setgender(e.target.value)}>
               <label for="" class="r2lbl">*Gender</label>
 
               <input 
@@ -125,20 +141,21 @@ const SexOffenderForm=()=>{
               value="Female"
               /><p class='regisex'>Female</p>
             </div>
+           
     
             <div class="r2inputfield">
               <label for="" class="r2lbl">*Age</label>
               <input 
-              type="text" 
+              type="number" 
               class="input" 
               placeholder="Enter your age" 
               maxlength="2" 
               pattern="^[0-9]{2}$"
               required  
               title="Enter numbers only"
-              id='Age'
-              value={Age}
-              onChange={(e)=> setAge(e.target.value)}
+              id='age'
+              value={age}
+              onChange={(e)=> setage(e.target.value)}
               />
             </div>
     
@@ -148,9 +165,9 @@ const SexOffenderForm=()=>{
               type="date" 
               class="input" 
               required
-              id='DOB'
-              value={DOB}
-              onChange={(e)=> setDOB(e.target.value)}
+              id='dob'
+              value={dob}
+              onChange={(e)=> setdob(e.target.value)}
               />
             </div>
     
@@ -160,13 +177,13 @@ const SexOffenderForm=()=>{
               <label for="" class="r2lbl">*NIC No</label>
 
               <input 
-              type="tel" 
+              type="text" 
               class="input"   
               placeholder="Enter your NIC number" 
               title="Please enter valid NIC number"
-              id='NIC'
-              value={NIC}
-              onChange={(e)=> setNIC(e.target.value)}
+              id='nic'
+              value={nic}
+              onChange={(e)=> setnic(e.target.value)}
               />
             </div>
 
@@ -174,14 +191,14 @@ const SexOffenderForm=()=>{
               <label for="" class="r2lbl">*Phone Number</label>
 
               <input 
-              type="text" 
+              type="tel" 
               class="input"  
               maxlength="10" 
               placeholder="Enter your phone number" 
               title="Please enter valid phone number"
-              id='Contact_No'
-              value={Contact_No}
-              onChange={(e)=> setContact(e.target.value)}
+              id='cntact_no'
+              value={contact_no}
+              onChange={(e)=> setcontact(e.target.value)}
               />
             </div>
             <div class="r2inputfield">
@@ -192,9 +209,9 @@ const SexOffenderForm=()=>{
               placeholder="Enter Relationship To Applicant" 
               maxlength="30"
               title="Enter only alphabets"
-              id='Full_Name'
-              value={Full_Name}
-              onChange={(e)=> setFullName(e.target.value)}
+              id='rtp'
+              value={rtp}
+              onChange={(e)=> setrtp(e.target.value)}
               required/>
             </div>
     
@@ -208,9 +225,9 @@ const SexOffenderForm=()=>{
               pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
               maxlength="100" 
               required
-              id='Address'
-              value={Address}
-              onChange={(e)=> setAddress(e.target.value)}
+              id='address'
+              value={address}
+              onChange={(e)=> setaddress(e.target.value)}
               >
               </textarea>
             </div>
@@ -225,9 +242,9 @@ const SexOffenderForm=()=>{
               pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
               maxlength="100" 
               required
-              id='Address'
-              value={Address}
-              onChange={(e)=> setAddress(e.target.value)}
+              id='aditionalinfo'
+              value={aditionalinfo}
+              onChange={(e)=> setaditionalinfo(e.target.value)}
               >
               </textarea>
             </div>

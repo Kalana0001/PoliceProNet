@@ -37,16 +37,28 @@ function PoliceOfficers() {
             <thead>
               <tr>
                 <th className='poth'>Name</th>
+                <th className='poth'>Designation</th>
+                <th className='poth'>Batch No</th>
+                <th className='poth'>Department</th>
                 <th className='poth'>Age</th>
-                <th className='poth'>Contact Number</th>
+                <th className='poth'>Address</th>
+                <th className='poth'>Contact No</th>
+                <th className='poth'>Email</th>
+                <th className='poth'>Station</th>
               </tr>
             </thead>
             <tbody>
               {policeOfficers.map((officer) => (
                 <tr key={officer.id}>
-                  <td className='potd'>{officer.officer_name}</td>
-                  <td className='potd'>{officer.id}</td>
+                  <td className='potd'>{officer.name}</td>
+                  <td className='potd'>{officer.designation}</td>
+                  <td className='potd'>{officer.batch_no}</td>
+                  <td className='potd'>{officer.department}</td>
+                  <td className='potd'>{officer.age}</td>
+                  <td className='potd'>{officer.address}</td>
                   <td className='potd'>{officer.contact_no}</td>
+                  <td className='potd'>{officer.email}</td>
+                  <td className='potd'>{officer.station}</td>
                 </tr>
               ))}
             </tbody>

@@ -19,9 +19,11 @@ function NavBar2() {
             <h3><img src={imgg1} className="imggg1" /></h3>
             <nav ref={navRef}>
                 <a href="/" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
-                <a href="/register" class='navia'><FontAwesomeIcon icon={faDashboard}/>Dashboard</a>
                 <a href="/about" class='navia'><FontAwesomeIcon icon={faUserFriends}/>About US</a>
-                <a href="/register" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Sign in</a>
+                <a href="/licensersignin" class='regsignin' ><FontAwesomeIcon icon={faUser}/>licenser</a>
+                <a href="/register" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Complainer</a>
+                <a href="/policesignin" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Police Officer</a>
+                <a href="/adminsignin" class='regsignin' ><FontAwesomeIcon icon={faUser}/>Admin</a>
                 <button
                     className="nav-btn nav-close-btn"
                     onClick={showNavbar}>

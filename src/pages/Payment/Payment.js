@@ -2,6 +2,7 @@ import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faSea
 import './Payment.css';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LicenserNavbar from '../../components/LicenserNavbar/LicenserNavbar';
 
 const Payment=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -11,11 +12,13 @@ const Payment=()=>{
   };
 
     return(
+      <div>
+        <LicenserNavbar/>
     <div className="Dashboard"> 
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
         <i class="bx bxl-c-plus-plus"></i>
-        <span class="logo_name">PoliceProNet</span>
+        <span class="logo_name">Licenser</span>
       </div>
       <ul class="nav-links">
         <li>
@@ -247,6 +250,7 @@ const Payment=()=>{
         </div>
       </div>
     </section>
+        </div>
         </div>
     )
 }

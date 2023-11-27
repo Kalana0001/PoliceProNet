@@ -1,11 +1,11 @@
 import { useRef } from "react";
-import './NavBar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose, faDashboard, faHome, faPhone, faRightFromBracket, faUser, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import imgg1 from "../../Images/headlogo1.png"
 import LogOut from "../../pages/Logout/Logout";
+import './AdminNavabar.css'
 
-function NavBar() {
+function AdminNavabar() {
     const navRef = useRef();
 
     const showNavbar = () => {
@@ -19,10 +19,7 @@ function NavBar() {
         <header>
             <h3><img src={imgg1} className="imggg1" /></h3>
             <nav ref={navRef}>
-                <a href="/home" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
-                <a href="/dashboard" class='navia'><FontAwesomeIcon icon={faDashboard}/>Dashboard</a>
-                <a href="/contactus" class='navia'><FontAwesomeIcon icon={faPhone}/>Contact US</a>
-                <LogOut/>
+               <p className="adminlogout"> <LogOut/></p>
                 <button
                     className="nav-btn nav-close-btn"
                     onClick={showNavbar}>
@@ -39,5 +36,5 @@ function NavBar() {
     );
 }
 
-export default NavBar;
+export default AdminNavabar;
 

@@ -42,8 +42,7 @@ function Register() {
           <div className="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+
             </p>
             <button className="btn transparent" onClick={handleSignUpClick} id="sign-up-btn">
               Sign up
@@ -55,8 +54,7 @@ function Register() {
           <div className="content">
             <h3>Join Us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+                Join With PoliceProNet..
             </p>
             <button className="btn transparent" onClick={handleSignInClick} id="sign-in-btn">
               Sign in

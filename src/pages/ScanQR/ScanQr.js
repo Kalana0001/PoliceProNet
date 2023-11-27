@@ -1,11 +1,10 @@
 import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faSearch, faWallet, } from '@fortawesome/free-solid-svg-icons';
-import './Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavBar from '../../components/NavBar/NavBar';
 import {supabase} from '../../Config/SupaBaseClient';
 
-const Dashboard=()=>{
+const ScanQr=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const toggleSidebar = () => {
@@ -48,20 +47,41 @@ const Dashboard=()=>{
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
         <i class="bx bxl-c-plus-plus"></i>
-        <span class="logo_name">Complainers</span>
+        <span class="logo_name">PoliceProNet</span>
       </div>
       <ul class="nav-links">
         <li>
-          <a href="/dashboard" class="active">
+          <a href="/policedashboard" >
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="/complainstatus" >
+          <a href="/scanqr"  class="active">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
-            <span class="links_name">Complains</span>
+            <span class="links_name">Scan QR</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/message">
+            <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/profilesettings">
+            <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
+            <span class="links_name">Profile Settings</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="/setting">
+            <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
+            <span class="links_name">Setting</span>
           </a>
         </li>
 
@@ -92,7 +112,52 @@ const Dashboard=()=>{
       </nav>
 
       <div class="home-content">
-
+        <div class="overview-boxes">
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic"></div>
+              <div class="number">Edit Profile</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <a><span class="text">Click To Visit</span></a>
+              </div>
+            </div>
+            <i class="bx bx-cart-alt cart"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic"></div>
+              <div class="number">Payment</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <a><span class="text">Click To Visit</span></a>
+              </div>
+            </div>
+            <i class="bx bxs-cart-add cart two"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Profit</div>
+              <div class="number">$12,876</div>
+              <div class="indicator">
+                <i class="bx bx-up-arrow-alt"></i>
+                <a><span class="text">Click To Visit</span></a>
+              </div>
+            </div>
+            <i class="bx bx-cart cart three"></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Total Return</div>
+              <div class="number">11,086</div>
+              <div class="indicator">
+                <i class="bx bx-down-arrow-alt down"></i>
+                <a><span class="text">Click To Visit</span></a>
+              </div>
+            </div>
+            <i class="bx bxs-cart-download cart four"></i>
+          </div>
+        </div>
 
 
         <div>
@@ -144,4 +209,4 @@ const Dashboard=()=>{
         </div>
     )
 }
-export default Dashboard;
+export default ScanQr;

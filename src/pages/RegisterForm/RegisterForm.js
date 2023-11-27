@@ -6,18 +6,19 @@ import NavBar from '../../components/NavBar/NavBar';
 
 const RegisterForm=()=>{
 
-  const[Fname,setFname]=useState('')
-  const[Lname,setLname]=useState('')
-  const[Address,setAddress]=useState('')
-  const[NIC,setNIC]=useState('')
-  const[Contact_No,setContact]=useState('')
-  const[Postal_Code,setPcode]=useState('')
-  const[Age,setAge]=useState('')
-  const[DOB,setDOB]=useState('')
-  const [Province, setProvince] = useState('');
-  const [State, setState] = useState('');
-  const [Gender, setGender] = useState('');
-  const [Full_Name, setFullName] = useState('');
+  const[fname,setFname]=useState('')
+  const[lname,setLname]=useState('')
+  const[address,setAddress]=useState('')
+  const[nic,setNIC]=useState('')
+  const[contact_no,setContact]=useState('')
+  const[postal_code,setPcode]=useState('')
+  const[age,setAge]=useState('')
+  const[dob,setDOB]=useState('')
+  const [province, setProvince] = useState('');
+  const [state, setState] = useState('');
+  const [gender, setGender] = useState('');
+  const [full_name, setFullName] = useState('');
+  const [username, setUserName] = useState('');
 
   
   const[formError,setFormError]=useState('')
@@ -25,13 +26,13 @@ const RegisterForm=()=>{
   const handleSubmit = async (e) =>{
     e.preventDefault()
 
-    if(!Fname || !Lname || !Full_Name|| !Address || !NIC || !Contact_No || !Postal_Code || !Age || !DOB){
+    if(!fname || !lname || !full_name|| !address || !nic || !contact_no || !postal_code || !age || !dob || !username){
       setFormError('Please fill in all the fields correctly')
       return
     }
     const {data, error}=await supabase
     .from('People')
-    .insert([{Fname,Lname,Full_Name,Address,NIC,Contact_No,Postal_Code,Age,DOB,Province,State,Gender}])
+    .insert([{fname,lname,full_name,address,nic,contact_no,postal_code,age,dob,province,state,gender,username}])
 
     if(error){
       console.log(error)
@@ -54,6 +55,20 @@ const RegisterForm=()=>{
         </div>
         <form action="POST" data-netlify="true" id="myForm" onSubmit={handleSubmit}>
           <div class="r2form">
+
+          <div class="r2inputfield">
+              <label class="r2lbl">*User Name</label>
+              <input 
+              type="text" 
+              class="input"  
+              placeholder="Enter User name" 
+              maxlength="30"
+              title="Enter only alphabets"
+              id='username'
+              value={username}
+              onChange={(e)=> setUserName(e.target.value)}
+              required/>
+            </div>
     
             <div class="r2inputfield">
               <label class="r2lbl">*First Name</label>
@@ -66,8 +81,8 @@ const RegisterForm=()=>{
               pattern="[A-Za-z]{1,32}" 
               title="Enter only alphabets" 
               required
-              id='Fname'
-              value={Fname}
+              id='fname'
+              value={fname}
               onChange={(e)=> setFname(e.target.value)}
               />
             </div>
@@ -81,8 +96,8 @@ const RegisterForm=()=>{
               maxlength="30"
               pattern="[A-Za-z]{1,32}" 
               title="Enter only alphabets"
-              id='Lname'
-              value={Lname}
+              id='lname'
+              value={lname}
               onChange={(e)=> setLname(e.target.value)}
               required/>
             </div>
@@ -95,25 +110,25 @@ const RegisterForm=()=>{
               placeholder="Enter Full name" 
               maxlength="30"
               title="Enter only alphabets"
-              id='Full_Name'
-              value={Full_Name}
+              id='full_name'
+              value={full_name}
               onChange={(e)=> setFullName(e.target.value)}
               required/>
             </div>
     
-            <div class="r2inputfield" id="Gender" onChange={(e)=> setGender(e.target.value)}>
+            <div class="r2inputfield" id="gender" onChange={(e)=> setGender(e.target.value)}>
               <label for="" class="r2lbl">*Gender</label>
 
               <input 
               type="radio" 
-              name="gender" 
+              name="genders" 
               id="radio" 
               value="Male"/>
               <p class='regisex'>Male</p>
 
               <input 
               type="radio" 
-              name="gender" 
+              name="genders" 
               id="radio" 
               value="Female"
               /><p class='regisex'>Female</p>
@@ -129,8 +144,8 @@ const RegisterForm=()=>{
               pattern="^[0-9]{2}$"
               required  
               title="Enter numbers only"
-              id='Age'
-              value={Age}
+              id='age'
+              value={age}
               onChange={(e)=> setAge(e.target.value)}
               />
             </div>
@@ -141,8 +156,8 @@ const RegisterForm=()=>{
               type="date" 
               class="input" 
               required
-              id='DOB'
-              value={DOB}
+              id='dob'
+              value={dob}
               onChange={(e)=> setDOB(e.target.value)}
               />
             </div>
@@ -157,8 +172,8 @@ const RegisterForm=()=>{
               class="input"   
               placeholder="Enter your NIC number" 
               title="Please enter valid NIC number"
-              id='NIC'
-              value={NIC}
+              id='nic'
+              value={nic}
               onChange={(e)=> setNIC(e.target.value)}
               />
             </div>
@@ -172,8 +187,8 @@ const RegisterForm=()=>{
               maxlength="10" 
               placeholder="Enter your phone number" 
               title="Please enter valid phone number"
-              id='Contact_No'
-              value={Contact_No}
+              id='contact_no'
+              value={contact_no}
               onChange={(e)=> setContact(e.target.value)}
               />
             </div>
@@ -188,8 +203,8 @@ const RegisterForm=()=>{
               pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
               maxlength="100" 
               required
-              id='Address'
-              value={Address}
+              id='address'
+              value={address}
               onChange={(e)=> setAddress(e.target.value)}
               >
               </textarea>
@@ -198,7 +213,7 @@ const RegisterForm=()=>{
             <div class="r2inputfield">
               <label class="r2lbl">*Province</label>
               <div class="custom_select">
-                <select id="Province" name="Province"  onChange={(e)=> setProvince(e.target.value)}  required>
+                <select id="province" name="province"  onChange={(e)=> setProvince(e.target.value)}  required>
                   <option value="">--Select your province--</option>
                   <option value="Central Province">Central Province</option>
                   <option value="Eastern Province">Eastern Province</option>
@@ -216,7 +231,7 @@ const RegisterForm=()=>{
             <div class="r2inputfield">
               <label class="r2lbl">*State</label>
               <div class="custom_select">
-                <select id="State" name="State"  onChange={(e)=> setState(e.target.value)} required>
+                <select id="state" name="state"  onChange={(e)=> setState(e.target.value)} required>
                   <option value="">--Select your state--</option>
                   <option value="Ampara">Ampara</option>
                   <option value="Anuradhapura">Anuradhapura</option>
@@ -255,8 +270,8 @@ const RegisterForm=()=>{
               placeholder="Enter your postal code" 
               maxlength="6"
               required
-              id='Postal_Code'
-              value={Postal_Code}
+              id='postal_code'
+              value={postal_code}
               onChange={(e)=> setPcode(e.target.value)}
               />
             </div>

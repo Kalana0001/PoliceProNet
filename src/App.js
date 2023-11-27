@@ -22,6 +22,23 @@ import Landing from './pages/Landing/Landing';
 import User from './components/User';
 import DamageGraffiti from './pages/DamageGraffiti/DamageGraffiti';
 import SexOffenderForm from './pages/SexOffenderForm/SexOffenderForm';
+import PoliceSignin from './pages/PoliceSignin/PoliceSignin';
+import AdminSignin from './pages/AdminSignin/AdminSignin';
+import PoliceDashBoard from './pages/PoliceDashBoard/PoliceDashBoard';
+import PoliceFetch from './pages/PoliceFetch/PoliceFetch';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import LicenserSignin from './pages/LicenserSignin/LicenserSignin';
+import LicenserDashboard from './pages/LicenserDashboard/LicenserDashboard';
+import LicenserHome from './pages/LicenserHome/LicenserHome';
+import ManageAdmins from './pages/ManageAdmins/ManageAdmins';
+import ManageComplainers from './pages/ManageComplainers/ManageComplainers';
+import ManageLIcenser from './pages/ManageLIcenser/ManageLIcenser';
+import ManageOfficers from './pages/ManageOfficers/ManageOfficers';
+import HandleLicense from './pages/HandleLicense/HandleLicense';
+import ScanQr from './pages/ScanQR/ScanQr';
+import CoplainStatus from './pages/CoplainStatus/CoplainStatus';
+
+
 
 
 
@@ -56,6 +73,25 @@ function App() {
               <Route path='/user' element={<User/>}/>
               <Route path='/damagegraffiti' element={<DamageGraffiti/>}/>
               <Route path='/sexoffender' element={<SexOffenderForm/>}/>
+              <Route path='/policesignin' element={<PoliceSignin/>}/>
+              <Route path='/adminsignin' element={<AdminSignin/>}/>
+              <Route path='/policedashboard' element={<PoliceDashBoard/>}/>
+
+              <Route path='/fetch' element={<PoliceFetch/>}/>
+
+              <Route path='/admindashboard' element={<AdminDashboard/>}/>
+              <Route path='/licensersignin' element={<LicenserSignin/>}/>
+              <Route path='/licenserdashboard' element={<LicenserDashboard/>}/>
+              <Route path='/licenserhome' element={<LicenserHome/>}/>
+
+              <Route path='/manageadmins' element={<ManageAdmins/>}/>
+              <Route path='/managemomplainers' element={<ManageComplainers/>}/>
+              <Route path='/managelicenser' element={<ManageLIcenser/>}/>
+              <Route path='/manageofficers' element={<ManageOfficers/>}/>
+              <Route path='/handlelicense' element={<HandleLicense/>}/>
+              <Route path='/scanqr' element={<ScanQr/>}/>
+              <Route path='/complainstatus' element={<CoplainStatus/>}/>
+
             </Routes>
           </main>
           <Footer/>

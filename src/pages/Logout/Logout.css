@@ -1,0 +1,10 @@
+.regsignout{
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 6px;
+    margin-left:100px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    color: white;
+    cursor: pointer;
+}

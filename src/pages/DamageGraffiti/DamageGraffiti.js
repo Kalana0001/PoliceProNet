@@ -5,46 +5,51 @@ import NavBar from '../../components/NavBar/NavBar';
 import './DamageGraffiti.css'
 
 
-const DamageForm=()=>{
+const DamageForm = () => {
+  const [sdad, setsdad] = useState('');
+  const [type, setType] = useState('');
+  const [dod, setdod] = useState('');
+  const [ecod, setecod] = useState('');
+  const [area, setarea] = useState('');
+  const [contact_no, setContact] = useState('');
+  const [address, setAddress] = useState('');
+  const [formError, setFormError] = useState('');
 
-  const[Fname,setFname]=useState('')
-  const[Lname,setLname]=useState('')
-  const[Address,setAddress]=useState('')
-  const[NIC,setNIC]=useState('')
-  const[Contact_No,setContact]=useState('')
-  const[Postal_Code,setPcode]=useState('')
-  const[Age,setAge]=useState('')
-  const[DOB,setDOB]=useState('')
-  const [Province, setProvince] = useState('');
-  const [State, setState] = useState('');
-  const [Gender, setGender] = useState('');
-  const [Full_Name, setFullName] = useState('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  
-  const[formError,setFormError]=useState('')
+    try {
+      if (!sdad || !type || !dod || !ecod || !area || !address) {
+        setFormError('Please fill in all the fields correctly');
+        return;
+      }
 
-  const handleSubmit = async (e) =>{
-    e.preventDefault()
+      const { data, error } = await supabase
+        .from('DamageGraffiti')
+        .insert([{ type, dod, area, ecod, sdad,contact_no,address }]);
 
-    if(!Fname || !Lname || !Full_Name|| !Address || !NIC || !Contact_No || !Postal_Code || !Age || !DOB){
-      setFormError('Please fill in all the fields correctly')
-      return
+      if (error) {
+        console.error(error);
+        setFormError('An error occurred while submitting the form. Please try again.');
+      }
+
+      if (data) {
+        console.log(data);
+        setFormError(null);
+        // Reset the form after successful submission
+        setsdad('');
+        setType('');
+        setdod('');
+        setecod('');
+        setarea('');
+        setContact('');
+        setAddress('');
+      }
+    } catch (error) {
+      console.error('Error inserting data:', error.message);
+      setFormError('An error occurred while submitting the form. Please try again.');
     }
-    const {data, error}=await supabase
-    .from('People')
-    .insert([{Fname,Lname,Full_Name,Address,NIC,Contact_No,Postal_Code,Age,DOB,Province,State,Gender}])
-
-    if(error){
-      console.log(error)
-      setFormError('Please fill in all the fields correctly')
-    }
-    if(data){
-      console.log(data)
-      setFormError(null)
-    }
-  }
-
-
+  };
     return(
       <span>
         <NavBar/>
@@ -88,7 +93,7 @@ const DamageForm=()=>{
           <div class="r2inputfield">
               <label class="r2lbl">*Damage Property Type:</label>
               <div class="custom_select">
-                <select id="Province" name="Province"  onChange={(e)=> setFname(e.target.value)}  required>
+                <select id="type" name="type"  onChange={(e)=> setType(e.target.value)}  required>
                   <option value="">--Select your Property Type--</option>
                   <option value="Vehicle">Vehicle</option>
                   <option value="House">House</option>
@@ -105,29 +110,12 @@ const DamageForm=()=>{
               type="date" 
               class="input" 
               required
-              id='DOB'
-              value={DOB}
-              onChange={(e)=> setDOB(e.target.value)}
+              id='dod'
+              value={dod}
+              onChange={(e)=> setdod(e.target.value)}
               />
             </div>
-    
-            <div class="r2inputfield">
-              <label class="r2lbl">*Time</label>
 
-              <input 
-              type="text" 
-              class="input" 
-              placeholder="Enter first name" 
-              maxlength="30"
-              pattern="[A-Za-z]{1,32}" 
-              title="Enter only alphabets" 
-              required
-              id='Fname'
-              value={Fname}
-              onChange={(e)=> setFname(e.target.value)}
-              />
-            </div>
-    
             <div class="r2inputfield">
               <label class="r2lbl">*Area:</label>
               <textarea 
@@ -138,9 +126,9 @@ const DamageForm=()=>{
               pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
               maxlength="100" 
               required
-              id='Address'
-              value={Address}
-              onChange={(e)=> setAddress(e.target.value)}
+              id='area'
+              value={area}
+              onChange={(e)=> setarea(e.target.value)}
               >
               </textarea>
             </div>
@@ -153,9 +141,9 @@ const DamageForm=()=>{
               placeholder="Enter Estimated Cost Of Damage" 
               maxlength="30"
               title="Enter only alphabets"
-              id='Full_Name'
-              value={Full_Name}
-              onChange={(e)=> setFullName(e.target.value)}
+              id='ecod'
+              value={ecod}
+              onChange={(e)=> setecod(e.target.value)}
               required/>
             </div>
 
@@ -169,12 +157,45 @@ const DamageForm=()=>{
               pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
               maxlength="100" 
               required
-              id='Address'
-              value={Address}
+              id='sdad'
+              value={sdad}
+              onChange={(e)=> setsdad(e.target.value)}
+              >
+              </textarea>
+            </div>
+
+            <div class="r2inputfield">
+              <label class="r2lbl">*Contact No:</label>
+              <textarea 
+              type='number'
+              class="input" 
+              placeholder="Enter your  Contact No"
+              maxlength="100" 
+              required
+              id='contact_no'
+              value={contact_no}
+              onChange={(e)=> setContact(e.target.value)}
+              >
+              </textarea>
+            </div>
+
+            <div class="r2inputfield">
+              <label class="r2lbl">*Address:</label>
+              <textarea 
+              class="textarea" 
+              cols="30" 
+              rows="5" 
+              placeholder="Enter your Address"
+              pattern="^[a-zA-Z][a-zA-Z0-9-_.]{5,12}$" 
+              maxlength="100" 
+              required
+              id='address'
+              value={address}
               onChange={(e)=> setAddress(e.target.value)}
               >
               </textarea>
             </div>
+
     
             <div class="r2inputfield terms">
               <label id="check" class="r2lbl">

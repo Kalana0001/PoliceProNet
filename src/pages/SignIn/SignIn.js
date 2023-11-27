@@ -1,13 +1,15 @@
 import {supabase} from '../../Config/SupaBaseClient';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SocialIcon from '../../components/atoms/SocialIcon/SocialIcon';
-import { faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock,faEye,faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './SignIn.css'
 
 function SignIn() {
 
   let navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false);
   
   const [formData,setFormData]= useState({
     email:'',
@@ -41,6 +43,10 @@ function SignIn() {
       alert(error)
     }
 }
+
+const togglePasswordVisibility = () => {
+  setShowPassword((prevShowPassword) => !prevShowPassword);
+};
     return (
         <form action="#" class="sign-in-form" onSubmit={handleSubmit}>
         <h2 class="title">Sign in</h2>
@@ -58,7 +64,6 @@ function SignIn() {
           <i class="fas fa-lock"><FontAwesomeIcon icon={faLock}/></i>
 
           <input 
-          type="password"
           onChange={handleChange}
           name='password'
           placeholder="Enter password"
@@ -68,8 +73,13 @@ function SignIn() {
           title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
           maxlength="100" 
           minlength="8" 
+          type={showPassword ? 'text' : 'password'}
           required />
         </div>
+
+        <i class="showps2" onClick={togglePasswordVisibility}>
+                {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+                  </i>
 
         <button type="submit" class="btn" >Sign In</button> 
 

@@ -1,11 +1,10 @@
 import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faSearch, faWallet, } from '@fortawesome/free-solid-svg-icons';
-import './Dashboard.css';
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavBar from '../../components/NavBar/NavBar';
 import {supabase} from '../../Config/SupaBaseClient';
 
-const Dashboard=()=>{
+const CoplainStatus=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const toggleSidebar = () => {
@@ -52,14 +51,14 @@ const Dashboard=()=>{
       </div>
       <ul class="nav-links">
         <li>
-          <a href="/dashboard" class="active">
+          <a href="/dashboard" >
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="/complainstatus" >
+          <a href="/complainstatus" class="active">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
             <span class="links_name">Complains</span>
           </a>
@@ -144,4 +143,4 @@ const Dashboard=()=>{
         </div>
     )
 }
-export default Dashboard;
+export default CoplainStatus;

@@ -76,7 +76,7 @@
   position: relative;
   background: #f5f5f5;
   min-height: 100vh;
-  width: calc(100% - 240px);
+ width: 100%;
   left: 240px;
   transition: all 0.5s ease;
 }
@@ -92,7 +92,7 @@
   display: flex;
   align-items: center;
   position: fixed;
-  width: calc(100% - 240px);
+  width: 100%;
   left: 240px;
   z-index: 100;
   padding: 0 20px;
@@ -502,3 +502,69 @@ nav .profile-details i{
   padding-left: 12px;
   font-size: 19px;
 }
+#licenserboard{
+    width: 100%;
+    
+}
+
+.licentable-container {
+    margin: 20px;
+  }
+  
+  .licentable {
+    width: 100%;
+    margin-top: 20px;
+    
+    border-color: white;
+  }
+  .licenpotd {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    color: black;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  .licenpoth {
+    background:#333;
+    height: 60px;
+    color: white;
+    border-radius: 10px;
+    border: solid;
+    border-width: 2px;
+    font-size: 11px;
+  }
+  .liceform1{
+display: inline;
+
+
+  }
+  .liceform2{
+display: inline;
+  }
+  .licebtn1{
+    cursor: pointer;
+    border-radius: 16px;
+    width: 50px;
+    font-size: 12px;
+    padding: 3px;
+    background-color: red;
+    margin-right: 5px;
+  }
+  .licebtn2{
+    cursor: pointer;
+    border-radius: 16px;
+    width: 50px;
+    font-size: 12px;
+    padding: 3px;
+    color: white;
+    background-color: blue;
+  }
+  .licebtn1:hover{
+
+  }
+  .licebtn2:hover{
+
+  }
+  

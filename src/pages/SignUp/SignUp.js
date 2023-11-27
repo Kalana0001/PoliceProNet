@@ -78,9 +78,6 @@ function SignUp() {
                 value={password}
                 required={true}
                 onChange={(e) => setPassword(e.target.value)}/>
-                <i class="showps" onClick={togglePasswordVisibility}>
-                {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
-                  </i>
             </div>
 
             <div class="input-field">
@@ -100,10 +97,14 @@ function SignUp() {
               required={true}
               onChange={(e) => setconPassword(e.target.value)} />
             </div>
+            <i class="showps" onClick={togglePasswordVisibility}>
+                {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+                  </i>
 
             <button type="submit" class="btn" disabled={loading}>
               {loading ? <span>Loading...</span> : <span>Sign Up</span>}
             </button> 
+            
             <p class="social-text">Or Sign up with social platforms</p>
             <SocialIcon/>
           </form>
