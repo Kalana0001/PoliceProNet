@@ -17,7 +17,7 @@ const ManageLIcenser=()=>{
   const [users,setUsers]=useState([])
 
   const [user, setUser]=useState({
-    username:'',f_name:''
+    username:'',f_name:'',l_name:'',full_name:'',email:'',password:'',contact_no:'',nic:'',address:'',dob:''
   })
 
   const [user2, setUser2]=useState({
@@ -61,7 +61,17 @@ const ManageLIcenser=()=>{
 
     await supabase
     .from('licenser')
-    .insert({username: user.username, f_name: user.f_name})
+    .insert({username: user.username, f_name: user.f_name,
+        l_name: user.l_name,
+        full_name: user.full_name,
+        email: user.email,
+        password: user.password,
+        contact_no: user.contact_no,
+        nic: user.nic,
+        address: user.address,
+        dob: user.dob
+
+    })
   }
 
   async function deleteLicenser(userId){
@@ -210,6 +220,62 @@ function displayLicenser(userId){
                   name='f_name'
                   onChange={handleChange}
                 />
+
+                
+                  <input
+                  type='text'
+                  placeholder='Last Name'
+                  name='l_name'
+                  onChange={handleChange}
+                />
+
+                <input
+                  type='text'
+                  placeholder='Full Name'
+                  name='full_name'
+                  onChange={handleChange}
+                />
+
+                <input
+                  type='text'
+                  placeholder='Email'
+                  name='email'
+                  onChange={handleChange}
+                />
+
+                <input
+                  type='text'
+                  placeholder='Password'
+                  name='password'
+                  onChange={handleChange}
+                />
+
+                <input
+                  type='tel'
+                  placeholder='Contact No'
+                  name='contact_no'
+                  onChange={handleChange}
+                />
+                  <input
+                  type='text'
+                  placeholder='NIC'
+                  name='nic'
+                  onChange={handleChange}
+                />
+                <input
+                  type='text'
+                  placeholder='Address'
+                  name='address'
+                  onChange={handleChange}
+                />
+
+                  <input
+                  type='date'
+                  placeholder='DOB'
+                  name='dob'
+                  onChange={handleChange}
+                />
+
                 
                 <button type='submit'>Create</button>
               </form>
@@ -242,6 +308,10 @@ function displayLicenser(userId){
                     <th className='licenpoth'>First Name</th>
                     <th className='licenpoth'>Last Name</th>
                     <th className='licenpoth'>Full Name</th>
+                    <th className='licenpoth'>Contact No</th>
+                    <th className='licenpoth'>NIC</th>
+                    <th className='licenpoth'>DOB</th>
+                    <th className='licenpoth'>Address</th>
                     <th className='licenpoth'>Email</th>
                     <th className='licenpoth'>Password</th>
                     <th className='licenpoth'>Actions</th>
@@ -257,6 +327,10 @@ function displayLicenser(userId){
                   <td className='licenpotd'>{user.f_name}</td>
                   <td className='licenpotd'>{user.l_name}</td>
                   <td className='licenpotd'>{user.full_name}</td>
+                  <td className='licenpotd'>{user.contact_no}</td>
+                  <td className='licenpotd'>{user.nic}</td>
+                  <td className='licenpotd'>{user.dob}</td>
+                  <td className='licenpotd'>{user.address}</td>
                   <td className='licenpotd'>{user.email}</td>
                   <td className='licenpotd'>{user.password}</td>
                   <td className='licenpotd'>

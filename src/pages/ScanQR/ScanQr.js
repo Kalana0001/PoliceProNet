@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavBar from '../../components/NavBar/NavBar';
 import {supabase} from '../../Config/SupaBaseClient';
+import {QrReader} from 'react-qr-reader';
+import jsQR from 'jsqr';
+import './ScanQr.css'
 
 const ScanQr=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
@@ -11,34 +14,211 @@ const ScanQr=()=>{
     setSidebarActive(!sidebarActive);
   };
 
-  const [userData, setUserData] = useState(null);
-  const [userProfile, setUserProfile] = useState(null);
+  const [qrData, setQrData] = useState('');
+  const [uploadedImageData, setUploadedImageData] = useState(null);
+  const [isScannerActive, setIsScannerActive] = useState(false);
 
+  const handleScan = (data) => {
+    if (data) {
+      setQrData(data);
+    }
+  };
+
+  const handleError = (err) => {
+    console.error(err);
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const imageData = reader.result;
+        setUploadedImageData(imageData);
+
+        // Decode QR code from the uploaded image
+        const decodedData = await decodeQRCodeFromImage(imageData);
+        if (decodedData) {
+          setQrData(decodedData);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDownloadClick = () => {
+    const imageData = qrData || uploadedImageData;
+
+    if (imageData) {
+      // Create an "a" element to simulate a download link
+      const link = document.createElement('a');
+      link.download = 'scanned-qrcode.png';
+
+      // Create a canvas with the QR code data as an image
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      const img = new Image();
+      img.src = imageData;
+
+      // Draw the image on the canvas
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+
+        // Convert the canvas content to a data URL and set it as the href
+        link.href = canvas.toDataURL('image/png');
+
+        // Trigger a click event on the "a" element to start the download
+        link.click();
+      };
+    }
+  };
+
+  const decodeQRCodeFromImage = async (imageData) => {
+    const img = new Image();
+    img.src = imageData;
+
+    return new Promise((resolve) => {
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0, img.width, img.height);
+
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+        if (code) {
+          resolve(code.data);
+        } else {
+          resolve(null);
+        }
+      };
+    });
+  };
+
+  const handleScanButtonClick = () => {
+    setIsScannerActive(true);
+  };
+
+  const handleStopScanClick = () => {
+    setIsScannerActive(false);
+  };
+
+  const renderDataInFormat = (data) => {
+    try {
+      const parsedData = JSON.parse(data);
+      return <pre>{JSON.stringify(parsedData, null, 2)}</pre>;
+    } catch (error) {
+      return <p>{data}</p>;
+    }
+  };
+
+  const [users,setUsers]=useState([])
+
+  const [user, setUser]=useState({
+    username:'',f_name:'',l_name:'',full_name:'',email:'',password:'',contact_no:'',nic:'',address:'',dob:''
+  })
+
+  const [user2, setUser2]=useState({
+    id:'' ,l_status:''
+  })
+
+  console.log(user2)
 
   useEffect(() => {
-    async function getUserData() {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        setUserData(user);
+    fetchLiceners()
+  }, [])
 
-        console.log(user)
-        let { data: profiles, error } = await supabase
-  .from('profiles')
-  .select("*")
-  .eq('id', user.id)
+  async function fetchLiceners(){
+    const {data} = await supabase
+    .from('licenser')
+    .select('*')
+    setUsers(data)
+  }
 
-  console.log(profiles)
-  setUserProfile(...profiles)
-  console.log(userProfile)
+  function handleChange(event){
+      setUser(prevFormData =>{
+        return{
+          ...prevFormData,
+          [event.target.name]:event.target.value
+        }
+      })
+  }
+  
 
-      
-      } catch (error) {
-        console.error('Error getting user data:', error);
+  function handleChange2(event){
+    setUser2(prevFormData =>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
       }
-    }
+    })
+}  
 
-    getUserData();
-  }, []);
+    
+  async function createLiceners(){
+
+    await supabase
+    .from('licenser')
+    .insert({username: user.username, f_name: user.f_name,
+        l_name: user.l_name,
+        full_name: user.full_name,
+        email: user.email,
+        password: user.password,
+        contact_no: user.contact_no,
+        nic: user.nic,
+        address: user.address,
+        dob: user.dob
+
+    })
+  }
+
+  async function deleteLicenser(userId){
+
+    const {data, error} = await supabase
+    .from('licenser')
+    .delete()
+    .eq('id', userId)
+
+    fetchLiceners()
+
+    if(error){
+      console.log(error)
+    }
+    if(data){
+      console.log(data)
+    }
+  }
+
+function displayLicenser(userId){
+    users.map((user)=>{
+
+      if(user.id==userId){
+        setUser2({id:user.id,l_status:user.l_status})
+      }
+    })
+
+  }
+
+ async function updateLicenser(userId){
+    const {data,error} = await supabase
+    .from('licenser')
+    .update({id:user2.id,l_status:user2.l_status})
+    .eq('id', userId)
+
+    fetchLiceners()
+
+    if(error){
+      console.log(error)
+    }
+    if(data){
+      console.log(data)
+    }
+  }
 
     return(
     <div>
@@ -65,23 +245,16 @@ const ScanQr=()=>{
         </li>
 
         <li>
-          <a href="/message">
+          <a href="/managecomplains1">
             <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
-            <span class="links_name">Messages</span>
+            <span class="links_name">Manage Complains 1</span>
           </a>
         </li>
 
         <li>
-          <a href="/profilesettings">
+          <a href="/managecomplains2">
             <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
-            <span class="links_name">Profile Settings</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="/setting">
-            <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
-            <span class="links_name">Setting</span>
+            <span class="links_name">Manage Complains 2</span>
           </a>
         </li>
 
@@ -112,91 +285,110 @@ const ScanQr=()=>{
       </nav>
 
       <div class="home-content">
-        <div class="overview-boxes">
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic"></div>
-              <div class="number">Edit Profile</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <a><span class="text">Click To Visit</span></a>
-              </div>
-            </div>
-            <i class="bx bx-cart-alt cart"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic"></div>
-              <div class="number">Payment</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <a><span class="text">Click To Visit</span></a>
-              </div>
-            </div>
-            <i class="bx bxs-cart-add cart two"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Profit</div>
-              <div class="number">$12,876</div>
-              <div class="indicator">
-                <i class="bx bx-up-arrow-alt"></i>
-                <a><span class="text">Click To Visit</span></a>
-              </div>
-            </div>
-            <i class="bx bx-cart cart three"></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">Total Return</div>
-              <div class="number">11,086</div>
-              <div class="indicator">
-                <i class="bx bx-down-arrow-alt down"></i>
-                <a><span class="text">Click To Visit</span></a>
-              </div>
-            </div>
-            <i class="bx bxs-cart-download cart four"></i>
-          </div>
-        </div>
 
 
         <div>
-        {userData ? (
-        <div class="sales-boxes">
-          <div class="recent-sales box">
-          <div class="profheader">
-            <h2 className='profah31'><p>Profile</p></h2>
-            <div >
-            <img class="profheader1" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049__480.png"/>
-            <h3 className='profh3'>{userProfile?.username}</h3>
-            </div>
-            </div>
-           
-            <div className='profadata'>
-             <div><p className='profap1'><strong>Full Name:</strong></p><p className='profap'>{userProfile?.full_name}</p></div>
-             <div><p className='profap1'><strong>Email:</strong></p><p className='profap'>{userData.email}</p></div>
-             <div><p className='profap1'><strong>Gender:</strong></p><p className='profap'>{userProfile?.gender}</p></div>
-             <div><p className='profap1'><strong>Age:</strong></p><p className='profap'>{userProfile?.age}</p></div>
-             <div><p className='profap1'><strong>DOB:</strong></p><p className='profap'>{userProfile?.dob}</p></div>
-             <div><p className='profap1'><strong>NIC No:</strong></p><p className='profap'>{userProfile?.nic}</p></div>
-             <div><p className='profap1'><strong>Phone No:</strong></p><p className='profap'>{userProfile?.contact_no}</p></div>
-             <div><p className='profap1'><strong>Address:</strong></p><p className='profap'>{userProfile?.address}</p></div>
-             <div><p className='profap1'><strong>Province:</strong></p><p className='profap'>{userProfile?.province}</p></div>
-             <div><p className='profap1'><strong>Statae:</strong></p><p className='profap'>{userProfile?.state}</p></div>
+
+        <div class="">
+
+        <div className="qr-reader-card">
+      {isScannerActive ? (
+        <QrReader
+          delay={300}
+          onError={handleError}
+          onScan={handleScan}
+          style={{ width: '100%' }}
+        />
+      ) : null}
+
+      <div>
+        <h3>Scanned QR Data:</h3>
+        {renderDataInFormat(qrData)}
+      </div>
+
+      <input type="file" accept="image/*" onChange={handleImageUpload} />
+      {uploadedImageData && <img src={uploadedImageData} alt="Uploaded QR Code" className="uploaded-image" />}
+
+      {qrData && (
+        <>
+          <button onClick={handleDownloadClick}>Download Scanned QR Code</button>
+          <img src={`data:image/png;base64,${qrData}`} alt="Scanned QR Code" className="scanned-image" />
+        </>
+      )}
+
+      {!isScannerActive && (
+        <button onClick={handleScanButtonClick}>Start Scan</button>
+      )}
+
+      {isScannerActive && (
+        <button onClick={handleStopScanClick}>Stop Scan</button>
+      )}
+    </div>
+
+          <div class="top-sales box">
+          <div class="recent-sales box" id='licenserboard'>
+
+              <form onSubmit={()=>updateLicenser(user2.id)} className='liceform2'>
+                <input
+                  type='text'
+                  name='l_status'
+                  onChange={handleChange2}
+                  defaultValue={user2.l_status}
+                />
+
+                <button type='submit'>Save Changes</button>
+              </form>
+            <div class="sales-details">
+
+
+              <table className='licentable'>
+                <thead>
+                  <tr>
+                    <th className='licenpoth'>ID</th>
+                    <th className='licenpoth'>Username</th>
+                    <th className='licenpoth'>First Name</th>
+                    <th className='licenpoth'>Last Name</th>
+                    <th className='licenpoth'>Full Name</th>
+                    <th className='licenpoth'>Contact No</th>
+                    <th className='licenpoth'>NIC</th>
+                    <th className='licenpoth'>DOB</th>
+                    <th className='licenpoth'>Address</th>
+                    <th className='licenpoth'>Email</th>
+                    <th className='licenpoth'>Staus</th>
+                    <th className='licenpoth'>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {users.map((user)=>
+                  
+                  <tr key={user.id}>
+                  <td className='licenpotd'>{user.id}</td>
+                  <td className='licenpotd'>{user.username}</td>
+                  <td className='licenpotd'>{user.f_name}</td>
+                  <td className='licenpotd'>{user.l_name}</td>
+                  <td className='licenpotd'>{user.full_name}</td>
+                  <td className='licenpotd'>{user.contact_no}</td>
+                  <td className='licenpotd'>{user.nic}</td>
+                  <td className='licenpotd'>{user.dob}</td>
+                  <td className='licenpotd'>{user.address}</td>
+                  <td className='licenpotd'>{user.email}</td>
+                  <td className='licenpotd'>{user.l_status}</td>
+                  <td className='licenpotd'>
+                    <button onClick={()=>{deleteLicenser(user.id)}} className='licebtn1'>Delete</button>
+                    <button onClick={()=>{displayLicenser(user.id)}} className='licebtn2'>Edit</button>
+                  </td>
+                  </tr>
+
+                  )}
+                </tbody>
+              </table>
 
             </div>
           </div>
-          <div class="top-sales box">
-
 
             </div>
         </div>
-                ) : (
-                    <div className="spinner ">
-                    <span>Loading...</span>
-                    <div className="half-spinner"></div>
-                    </div>
-                      )}
 
         </div>
 

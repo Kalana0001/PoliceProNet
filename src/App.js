@@ -37,6 +37,11 @@ import ManageOfficers from './pages/ManageOfficers/ManageOfficers';
 import HandleLicense from './pages/HandleLicense/HandleLicense';
 import ScanQr from './pages/ScanQR/ScanQr';
 import CoplainStatus from './pages/CoplainStatus/CoplainStatus';
+import ManageDamage from './pages/ManageDamage/ManageDamage';
+import ManageSexualComplain from './pages/ManageSexualComplain/ManageSexualComplain';
+import LicenserContactUs from './pages/LicenserContactUs/LicenserContactUs';
+import ManageComplains1 from './pages/ManageComplains1/ManageComplains1';
+import ManageComplains2 from './pages/ManageComplains2/ManageComplains2';
 
 
 
@@ -91,6 +96,11 @@ function App() {
               <Route path='/handlelicense' element={<HandleLicense/>}/>
               <Route path='/scanqr' element={<ScanQr/>}/>
               <Route path='/complainstatus' element={<CoplainStatus/>}/>
+              <Route path='/managedamage' element={<ManageDamage/>}/>
+              <Route path='/manageSexualcomplain' element={<ManageSexualComplain/>}/>
+              <Route path='/licensercontactus' element={<LicenserContactUs/>}/>
+              <Route path='/managecomplains1' element={<ManageComplains1/>}/>
+              <Route path='/managecomplains2' element={<ManageComplains2/>}/>
 
             </Routes>
           </main>

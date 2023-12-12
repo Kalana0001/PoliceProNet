@@ -7,6 +7,7 @@ import jpg16 from "../../../Images/poliimg7.png"
 const Card7=()=>{
 
     return(
+    
     <span className='aboutall'>
     <div class="hacrd1wrapper">
         <div class="hcard1services">
@@ -21,7 +22,7 @@ const Card7=()=>{
                 </span>
             </span>
         </a>
-        <a className='hcard1a' href="/registerform">
+        <a className='hcard1a' href="/policestations">
             <span class="hcard1single-img hcard1img-two" data-aos="fade-up">
                 <span class="hcard1img-text" >
                     <img className='cardimgg' src={jpg15}/>

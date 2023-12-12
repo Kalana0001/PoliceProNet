@@ -1,0 +1,85 @@
+.paypay-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .paypay-container form {
+    padding: 20px;
+    width: 700px;
+    background: #006aff50;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.438);
+    border-radius: 15px;
+    margin-bottom: 50px;
+  }
+  
+  .paypay-container form .paypay-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col {
+    flex: 1 1 250px;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-title {
+    font-size: 20px;
+    color: #333;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-inputBox {
+    margin: 15px 0;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-inputBox span {
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-inputBox input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    font-size: 15px;
+    text-transform: none;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-inputBox input:focus {
+    border: 1px solid #000;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-flex {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-flex .paypay-inputBox {
+    margin-top: 5px;
+  }
+  
+  .paypay-container form .paypay-row .paypay-col .paypay-inputBox img {
+    height: 34px;
+    margin-top: 5px;
+    filter: drop-shadow(0 0 1px #000);
+  }
+  
+  .paypay-container form .paypay-submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 17px;
+    background: #027ffc;
+    color: #000000;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  .paypay-container form .paypay-submit-btn:hover {
+    background: #033196;
+    color: #ffffff;
+  }
+  

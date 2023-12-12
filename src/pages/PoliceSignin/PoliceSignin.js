@@ -35,8 +35,10 @@ function PoliceSignin() {
         window.alert('Invalid email or password');
       } else {
         const loggedInUser = data[0];
-        // Authentication successful, you can now redirect or set up your application state
+        
         console.log('Login successful',loggedInUser);
+        
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
         navigate('/policedashboard', { state: { user: loggedInUser } });
       }
     } catch (error) {

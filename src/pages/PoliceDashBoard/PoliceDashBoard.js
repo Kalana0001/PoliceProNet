@@ -7,45 +7,26 @@ import {supabase} from '../../Config/SupaBaseClient';
 
 const PoliceDashBoard=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+      function fetchUsers(){
+    // Retrieve from local storage
+      const storedUser = localStorage.getItem('loggedInUser');
+
+// If there is a stored user, parse it back to an object
+      const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+      console.log('Stored User:', parsedUser);
+    setUser(parsedUser)
+      }
 
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   };
-
-  const [policedata, setPoliceData] = useState([]);
-  const location = useLocation();  // Assuming you are using react-router-dom
-  const navigate = useNavigate();
-
-  // Fetch police officer data for the currently logged-in user
-  useEffect(() => {
-    const fetchPoliceData = async () => {
-      try {
-        // Assuming you have a way to get the currently logged-in user's information
-        const currentUser = location.state?.user;  // Update this based on your authentication setup
-
-        if (currentUser) {
-          // Fetch data from the "policeOfficers" table for the logged-in user
-          const { data, error } = await supabase
-            .from('policeOfficers')
-            .select()
-            .eq('email', currentUser.email);  // Assuming email is a unique identifier
-
-          if (error) {
-            console.error('Error fetching police officer data:', error.message);
-          } else {
-            setPoliceData(data || []);
-          }
-        } else {
-          // Redirect to login if user information is not available
-          navigate('/policedashboard');
-        }
-      } catch (error) {
-        console.error('Error fetching police officer data:', error.message);
-      }
-    };
-
-    fetchPoliceData();
-  }, [location.state?.user, navigate]);
 
   
 
@@ -74,16 +55,16 @@ const PoliceDashBoard=()=>{
         </li>
 
         <li>
-          <a href="/message">
+          <a href="/managecomplains1">
             <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
-            <span class="links_name">Messages</span>
+            <span class="links_name">Manage Complains 1</span>
           </a>
         </li>
 
         <li>
-          <a href="/profilesettings">
+          <a href="/managecomplains2">
             <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
-            <span class="links_name">Profile Settings</span>
+            <span class="links_name">Manage Complains 2</span>
           </a>
         </li>
 
@@ -170,27 +151,27 @@ const PoliceDashBoard=()=>{
 
 
         <div>
-        {policedata.map((policeOfficers) => (
+
         <div class="sales-boxes">
           <div class="recent-sales box">
           <div class="profheader">
             <h2 className='profah31'><p>Profile</p></h2>
             <div >
             <img class="profheader1" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049__480.png"/>
-            <h3 className='profh3'>{policeOfficers.username}</h3>
+            <h3 className='profh3'>{user?.username}</h3>
             </div>
             </div>
            
             <div className='profadata'>
-            <div><p className='profap1'><strong>Email:</strong></p><p className='profap'>{policeOfficers.email}</p></div>
-             <div><p className='profap1'><strong>Full Name:</strong></p><p className='profap'>{policeOfficers.name}</p></div>
-             <div><p className='profap1'><strong>Designation:</strong></p><p className='profap'>{policeOfficers.designation}</p></div>
-             <div><p className='profap1'><strong>Batch No:</strong></p><p className='profap'>{policeOfficers.batch_no}</p></div>
-             <div><p className='profap1'><strong>Department:</strong></p><p className='profap'>{policeOfficers.department}</p></div>
-             <div><p className='profap1'><strong>Age:</strong></p><p className='profap'>{policeOfficers.age}</p></div>
-             <div><p className='profap1'><strong>Contact No:</strong></p><p className='profap'>{policeOfficers.contact_no}</p></div>
-             <div><p className='profap1'><strong>Address:</strong></p><p className='profap'>{policeOfficers.address}</p></div>
-             <div><p className='profap1'><strong>Station:</strong></p><p className='profap'>{policeOfficers.station}</p></div>
+            <div><p className='profap1'><strong>Email:</strong></p><p className='profap'>{user?.email}</p></div>
+             <div><p className='profap1'><strong>Full Name:</strong></p><p className='profap'>{user?.name}</p></div>
+             <div><p className='profap1'><strong>Designation:</strong></p><p className='profap'>{user?.designation}</p></div>
+             <div><p className='profap1'><strong>Batch No:</strong></p><p className='profap'>{user?.batch_no}</p></div>
+             <div><p className='profap1'><strong>Department:</strong></p><p className='profap'>{user?.department}</p></div>
+             <div><p className='profap1'><strong>Age:</strong></p><p className='profap'>{user?.age}</p></div>
+             <div><p className='profap1'><strong>Contact No:</strong></p><p className='profap'>{user?.contact_no}</p></div>
+             <div><p className='profap1'><strong>Address:</strong></p><p className='profap'>{user?.address}</p></div>
+             <div><p className='profap1'><strong>Station:</strong></p><p className='profap'>{user?.station}</p></div>
 
 
             </div>
@@ -200,7 +181,7 @@ const PoliceDashBoard=()=>{
 
             </div>
         </div>
-))}
+
 
         </div>
 

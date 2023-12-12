@@ -14,11 +14,11 @@ const HandleLicense=()=>{
   const [users,setUsers]=useState([])
 
   const [user, setUser]=useState({
-    username:'',f_name:''
+    l_no:'',f_name:''
   })
 
   const [user2, setUser2]=useState({
-    id:'' ,username:'',f_name:''
+    id:'' ,l_no:'',date_of_issue:'',date_of_expire:'',blood_groop:'',l_status:''
   })
 
   console.log(user2)
@@ -58,7 +58,7 @@ const HandleLicense=()=>{
 
     await supabase
     .from('licenser')
-    .insert({username: user.username, f_name: user.f_name})
+    .insert({l_no: user.l_no, f_name: user.f_name})
   }
 
   async function deleteLicenser(userId){
@@ -82,7 +82,7 @@ function displayLicenser(userId){
     users.map((user)=>{
 
       if(user.id==userId){
-        setUser2({id:user.id,username:user.username,f_name:user.f_name})
+        setUser2({id:user.id,l_no:user.l_no,date_of_issue:user.date_of_issue,date_of_expire:user.date_of_expire,blood_groop:user.blood_groop,l_status:user.l_status})
       }
     })
 
@@ -91,7 +91,7 @@ function displayLicenser(userId){
  async function updateLicenser(userId){
     const {data,error} = await supabase
     .from('licenser')
-    .update({id:user2.id,username:user2.username,f_name:user2.f_name})
+    .update({id:user2.id,l_no:user2.l_no,date_of_issue:user2.date_of_issue,date_of_expire:user2.date_of_expire,blood_groop:user2.blood_groop,l_status:user2.l_status})
     .eq('id', userId)
 
     fetchLiceners()
@@ -190,39 +190,50 @@ function displayLicenser(userId){
         <div class="sales-boxes" >
           
           <div class="recent-sales box" id='licenserboard'>
-          <form onSubmit={createLiceners} className='liceform1'>
-                <input
-                  type='text'
-                  placeholder='Username'
-                  name='username'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='First Name'
-                  name='f_name'
-                  onChange={handleChange}
-                />
-                
-                <button type='submit'>Create</button>
-              </form>
 
 
               <form onSubmit={()=>updateLicenser(user2.id)} className='liceform2'>
                 <input
                   type='text'
-                  name='username'
+                  name='l_no'
+                  placeholder='License No'
                   onChange={handleChange2}
-                  defaultValue={user2.username}
+                  defaultValue={user2.l_no}
                 />
 
                 <input
-                  type='text'
-                  name='f_name'
+                  type='date'
+                  name='date_of_issue'
+                  placeholder='Date Of Issue'
                   onChange={handleChange2}
-                  defaultValue={user2.f_name}
+                  defaultValue={user2.date_of_issue}
                 />
+
+                <input
+                  type='date'
+                  name='date_of_expire'
+                  placeholder='Date Of Expire'
+                  onChange={handleChange2}
+                  defaultValue={user2.date_of_expire}
+                />
+
+                  <input
+                  type='text'
+                  name='blood_groop'
+                  placeholder='blood Group'
+                  onChange={handleChange2}
+                  defaultValue={user2.blood_groop}
+                />
+
+                  <input
+                  type='text'
+                  name='l_status'
+                  placeholder='License Status'
+                  onChange={handleChange2}
+                  defaultValue={user2.l_status}
+                />
+
+
                 <button type='submit'>Save Changes</button>
               </form>
             <div class="sales-details">
@@ -232,12 +243,12 @@ function displayLicenser(userId){
                 <thead>
                   <tr>
                     <th className='licenpoth'>ID</th>
-                    <th className='licenpoth'>Username</th>
-                    <th className='licenpoth'>First Name</th>
-                    <th className='licenpoth'>Last Name</th>
                     <th className='licenpoth'>Full Name</th>
-                    <th className='licenpoth'>Email</th>
-                    <th className='licenpoth'>Password</th>
+                    <th className='licenpoth'>License No</th>
+                    <th className='licenpoth'>Date Of Issue</th>
+                    <th className='licenpoth'>date Of Expire</th>
+                    <th className='licenpoth'>Blood Group</th>
+                    <th className='licenpoth'>License Status</th>
                     <th className='licenpoth'>Actions</th>
                   </tr>
                 </thead>
@@ -247,12 +258,12 @@ function displayLicenser(userId){
                   
                   <tr key={user.id}>
                   <td className='licenpotd'>{user.id}</td>
-                  <td className='licenpotd'>{user.username}</td>
-                  <td className='licenpotd'>{user.f_name}</td>
-                  <td className='licenpotd'>{user.l_name}</td>
                   <td className='licenpotd'>{user.full_name}</td>
-                  <td className='licenpotd'>{user.email}</td>
-                  <td className='licenpotd'>{user.password}</td>
+                  <td className='licenpotd'>{user.l_no}</td>
+                  <td className='licenpotd'>{user.date_of_issue}</td>
+                  <td className='licenpotd'>{user.date_of_expire}</td>
+                  <td className='licenpotd'>{user.blood_groop}</td>
+                  <td className='licenpotd'>{user.l_status}</td>
                   <td className='licenpotd'>
                     <button onClick={()=>{deleteLicenser(user.id)}} className='licebtn1'>Delete</button>
                     <button onClick={()=>{displayLicenser(user.id)}} className='licebtn2'>Edit</button>

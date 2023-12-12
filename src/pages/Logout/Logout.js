@@ -13,6 +13,9 @@ function LogOut() {
     if (isConfirmed) {
       supabase.auth.signOut();
       // You can add any additional logic after signing out
+      // Remove the item from local storage
+localStorage.removeItem('loggedInUser');
+
       navigate("/"); // Navigate to the login page after signing out
     }
   };

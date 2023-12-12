@@ -7,33 +7,26 @@ import AdminNavabar from '../../components/AdminNavabar/AdminNavabar';
 
 const AdminDashboard=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+      function fetchUsers(){
+    // Retrieve from local storage
+      const storedUser = localStorage.getItem('loggedInUser');
+
+// If there is a stored user, parse it back to an object
+      const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+      console.log('Stored User:', parsedUser);
+    setUser(parsedUser)
+      }
 
   const toggleSidebar = () => {
     setSidebarActive(!sidebarActive);
   };
-
-  const [licenserData, setLicenserData] = useState([]);
-
-  useEffect(() => {
-    const fetchLicenserData = async () => {
-      try {
-        // Fetch data from the "licenser" table
-        const { data, error } = await supabase
-        .from('admin')
-        .select();
-
-        if (error) {
-          console.error('Error fetching licenser data:', error.message);
-        } else {
-          setLicenserData(data || []);
-        }
-      } catch (error) {
-        console.error('Error fetching licenser data:', error.message);
-      }
-    };
-
-    fetchLicenserData();
-  }, []); 
 
     return(
     <div>
@@ -163,22 +156,22 @@ const AdminDashboard=()=>{
 
 
         <div>
-        {licenserData.map((admin) => (
+ 
         <div class="sales-boxes">
           <div class="recent-sales box">
           <div class="profheader">
             <h2 className='profah31'><p>Profile</p></h2>
             <div >
             <img class="profheader1" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/instagram-3814049__480.png"/>
-            <h3 className='profh3'>{admin.username}</h3>
+            <h3 className='profh3'>{user?.username}</h3>
             </div>
             </div>
            
             <div className='profadata'>
-             <div><p className='profap1'><strong>Full Name:</strong></p><p className='profap'>{admin.name}</p></div>
-             <div><p className='profap1'><strong>Email:</strong></p><p className='profap'>{admin.email}</p></div>
-             <div><p className='profap1'><strong>Contact No:</strong></p><p className='profap'>{admin.contact_no}</p></div>
-             <div><p className='profap1'><strong>Address:</strong></p><p className='profap'>{admin.address}</p></div>
+             <div><p className='profap1'><strong>Full Name:</strong></p><p className='profap'>{user?.name}</p></div>
+             <div><p className='profap1'><strong>Email:</strong></p><p className='profap'>{user?.email}</p></div>
+             <div><p className='profap1'><strong>Contact No:</strong></p><p className='profap'>{user?.contact_no}</p></div>
+             <div><p className='profap1'><strong>Address:</strong></p><p className='profap'>{user?.address}</p></div>
              
             </div>
           </div>
@@ -188,7 +181,7 @@ const AdminDashboard=()=>{
             </div>
         </div>
 
-))}
+
         </div>
 
 

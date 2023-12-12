@@ -14,7 +14,7 @@ const ManageOfficers=()=>{
   const [users,setUsers]=useState([])
 
   const [user, setUser]=useState({
-    username:'',name:'',designation:'',batch_no:'',department:'',address:'',contact_no:'',station:'',age:'',email:'',station:''
+    username:'',name:''
   })
 
   const [user2, setUser2]=useState({
@@ -58,7 +58,7 @@ const ManageOfficers=()=>{
 
     await supabase
     .from('policeOfficers')
-    .insert({username: user.username, name: user.name, designation:user.designation,batch_no:user.batch_no,department:user.department,address:user.address,contact_no:user.contact_no,station:user.station,age:user.age,email:user.email,password:user.password})
+    .insert({username: user.username, name: user.name})
   }
 
   async function deleteLicenser(userId){
@@ -110,48 +110,41 @@ function displayLicenser(userId){
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
         <i class="bx bxl-c-plus-plus"></i>
-        <span class="logo_name">Admin</span>
+        <span class="logo_name">Police Officer</span>
       </div>
       <ul class="nav-links">
         <li>
-          <a href="/admindashboard" >
+          <a href="/policedashboard" >
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="/managelicenser" >
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Licensers</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="/handlelicense" >
+          <a href="/scanqr" >
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
-            <span class="links_name">Handle License</span>
+            <span class="links_name">Scan QR</span>
           </a>
         </li>
 
         <li>
-          <a href="/manageofficers" class="active">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Officers</span>
+          <a href="/managedamage" class="active">
+            <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
+            <span class="links_name">Damage Complains</span>
           </a>
         </li>
 
         <li>
-          <a href="/managemomplainers">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Complainers</span>
+          <a href="/manageSexualcomplain">
+            <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
+            <span class="links_name">Sexual Complains</span>
           </a>
         </li>
 
         <li>
-          <a href="/manageadmins" >
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Admins</span>
+          <a href="/setting">
+            <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
+            <span class="links_name">Setting</span>
           </a>
         </li>
 
@@ -203,68 +196,7 @@ function displayLicenser(userId){
                   name='name'
                   onChange={handleChange}
                 />
-
-                <input
-                  type='text'
-                  placeholder='Designation'
-                  name='designation'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Batch No'
-                  name='batch_no'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Department'
-                  name='department'
-                  onChange={handleChange}
-                />
-
-                  <input
-                  type='text'
-                  placeholder='Address'
-                  name='address'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='number'
-                  placeholder='Contact No'
-                  name='contact_no'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Station'
-                  name='station'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='number'
-                  placeholder='Age'
-                  name='age'
-                  onChange={handleChange}
-                />
-
-                  <input
-                  type='email'
-                  placeholder='email'
-                  name='email'
-                  onChange={handleChange}
-                />
-                                <input
-                  type='text'
-                  placeholder='Password'
-                  name='password'
-                  onChange={handleChange}
-                />
+                
                 <button type='submit'>Create</button>
               </form>
 

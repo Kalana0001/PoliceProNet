@@ -14,17 +14,15 @@ import LicenserNavbar from '../../components/LicenserNavbar/LicenserNavbar';
 const LicenserHome=()=>{
 
     let navigate = useNavigate();
-    const location = useLocation();
-     const { state } = location;
+    // Retrieve from local storage
+const storedUser = localStorage.getItem('loggedInUser');
   
-  if (!state || !state.user) {
-  
-  
+  if (!storedUser) {
     navigate('/licensersignin'); 
     return null;
   }
   
-  const loggedInUser = state.user;
+  const loggedInUser = storedUser ? JSON.parse(storedUser) : null;
 
     return(
 <span>

@@ -30,21 +30,19 @@ function TelephoneIndex() {
       <div>
         <NavBar/>
       <div className="poftable-container">
-        <h1 className='pohead'>Police Officers Details</h1>
+        <h1 className='pohead'>Telephone Index</h1>
         
       <table className='poftable'>
         <thead>
           <tr>
             <th className='poth'>Name</th>
-            <th className='poth'>Age</th>
-            <th className='poth'>Location</th>
+            <th className='poth'>Contact Number</th>
           </tr>
         </thead>
         <tbody>
           {policeOfficers.map((police) => (
             <tr key={police.id}>
-            <td className='potd'>{police.officer_name}</td>
-            <td className='potd'>{police.id}</td>
+            <td className='potd'>{police.name}</td>
             <td className='potd'>{police.contact_no}</td>
           </tr>
           ))}      

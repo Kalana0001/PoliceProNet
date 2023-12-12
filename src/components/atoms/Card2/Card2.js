@@ -21,7 +21,7 @@ const Card2=()=>{
                 </span>
             </span>
         </a>
-        <a className='hcard1a' href="/registerform">
+        <a className='hcard1a' href="/policestations">
             <span class="hcard1single-img hcard1img-two" data-aos="fade-up">
                 <span class="hcard1img-text" >
                     <img className='cardimgg' src={jpg15}/>

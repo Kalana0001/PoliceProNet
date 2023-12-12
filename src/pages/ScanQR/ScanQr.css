@@ -1,0 +1,38 @@
+/* QRCodeReader.css */
+
+.qr-reader-card {
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+  }
+  
+  .qr-reader-card input[type="file"] {
+    margin-top: 15px;
+  }
+  
+  .qr-reader-card img {
+    max-width: 100%;
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .qr-reader-card button {
+    margin-top: 15px;
+    background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .qr-reader-card button:hover {
+    background: linear-gradient(95deg, #6413aa 3.2%, #144aa1 99.5%);
+  }
+  

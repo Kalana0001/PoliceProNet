@@ -10,7 +10,7 @@ function PoliceEmergency() {
     const fetchData = async () => {
       try {
         const { data, error } = await supabase
-          .from('policeOfficers')
+          .from('policeEmergency')
           .select('*');
 
         if (error) {
@@ -30,21 +30,19 @@ function PoliceEmergency() {
       <div>
         <NavBar/>
       <div className="poftable-container">
-        <h1 className='pohead'>Police Officers Details</h1>
+        <h1 className='pohead'>Police Emergency</h1>
         
       <table className='poftable'>
         <thead>
           <tr>
-            <th className='poth'>Name</th>
-            <th className='poth'>Age</th>
-            <th className='poth'>Location</th>
+            <th className='poth'>Type</th>
+            <th className='poth'>Contact No</th>
           </tr>
         </thead>
         <tbody>
           {policeOfficers.map((police) => (
             <tr key={police.id}>
-            <td className='potd'>{police.officer_name}</td>
-            <td className='potd'>{police.id}</td>
+            <td className='potd'>{police.type}</td>
             <td className='potd'>{police.contact_no}</td>
           </tr>
           ))}      

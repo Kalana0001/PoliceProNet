@@ -19,10 +19,10 @@ function LicenserSignin() {
   
 
   const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); 
 
     try {
-      // Check if the provided email and password match a record in the PoliceOfficer table
+      
       const { data, error } = await supabase
         .from('licenser')
         .select()
@@ -35,8 +35,10 @@ function LicenserSignin() {
         window.alert('Invalid email or password');
       } else {
         const loggedInUser = data[0];
-        // Authentication successful, you can now redirect or set up your application state
+        
         console.log('Login successful',loggedInUser);
+        
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
         navigate('/licenserhome', { state: { user: loggedInUser } });
       }
     } catch (error) {

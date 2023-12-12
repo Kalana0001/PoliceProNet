@@ -1,0 +1,67 @@
+.licenseholdstatus{
+    display: flex;
+    margin-top: 40px;
+    margin-left: 18px;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 15px);
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* QrGenarator.css */
+
+/* Container styling */
+.qrgen {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: solid;
+
+    border-color: white;
+    background-color: #fff;
+    margin-left: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Label styling */
+  .qrlbl {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+  }
+  
+  /* Input field styling */
+  .qrinput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Download button styling */
+  .qrbtn {
+    background-color: blue;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 50px;
+    margin-bottom: 20px;
+  }
+  .qrbtn:hover {
+    background-color: darkblue;
+  }
+  
+
+  

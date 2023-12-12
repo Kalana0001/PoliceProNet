@@ -1,10 +1,12 @@
 import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faPeopleRoof, faSearch, faWallet, } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AdminNavabar from '../../components/AdminNavabar/AdminNavabar';
 import { supabase } from '../../Config/SupaBaseClient';
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AdminNavabar from '../../components/AdminNavabar/AdminNavabar';
+import NavBar from '../../components/NavBar/NavBar';
 
-const ManageOfficers=()=>{
+
+const ManageComplains1=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const toggleSidebar = () => {
@@ -14,11 +16,11 @@ const ManageOfficers=()=>{
   const [users,setUsers]=useState([])
 
   const [user, setUser]=useState({
-    username:'',name:'',designation:'',batch_no:'',department:'',address:'',contact_no:'',station:'',age:'',email:'',station:''
+    username:'',fname:''
   })
 
   const [user2, setUser2]=useState({
-    id:'' ,username:'',name:''
+    id:'' ,complain_status:'',arrivedate:''
   })
 
   console.log(user2)
@@ -29,7 +31,7 @@ const ManageOfficers=()=>{
 
   async function fetchLiceners(){
     const {data} = await supabase
-    .from('policeOfficers')
+    .from('DamageGraffiti')
     .select('*')
     setUsers(data)
   }
@@ -57,14 +59,14 @@ const ManageOfficers=()=>{
   async function createLiceners(){
 
     await supabase
-    .from('policeOfficers')
-    .insert({username: user.username, name: user.name, designation:user.designation,batch_no:user.batch_no,department:user.department,address:user.address,contact_no:user.contact_no,station:user.station,age:user.age,email:user.email,password:user.password})
+    .from('DamageGraffiti')
+    .insert({username: user.username, fname: user.fname})
   }
 
   async function deleteLicenser(userId){
 
     const {data, error} = await supabase
-    .from('policeOfficers')
+    .from('DamageGraffiti')
     .delete()
     .eq('id', userId)
 
@@ -82,7 +84,7 @@ function displayLicenser(userId){
     users.map((user)=>{
 
       if(user.id==userId){
-        setUser2({id:user.id,username:user.username,name:user.name})
+        setUser2({id:user.id,complain_status:user.complain_status,arrivedate:user.arrivedate})
       }
     })
 
@@ -90,8 +92,8 @@ function displayLicenser(userId){
 
  async function updateLicenser(userId){
     const {data,error} = await supabase
-    .from('policeOfficers')
-    .update({id:user2.id,username:user2.username,name:user2.name})
+    .from('DamageGraffiti')
+    .update({id:user2.id,complain_status:user2.complain_status,arrivedate:user2.arrivedate})
     .eq('id', userId)
 
     fetchLiceners()
@@ -103,46 +105,47 @@ function displayLicenser(userId){
       console.log(data)
     }
   }
+
     return(
     <div>
-    <AdminNavabar/>
+    <NavBar/>
     <div className="Dashboard"> 
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
         <i class="bx bxl-c-plus-plus"></i>
-        <span class="logo_name">Admin</span>
+        <span class="logo_name">Police Officers</span>
       </div>
       <ul class="nav-links">
         <li>
-          <a href="/admindashboard" >
+          <a href="/policedashboard" >
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="/managelicenser" >
+          <a href="/scanqr">
           <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Licensers</span>
+            <span class="links_name">Scan QR</span>
           </a>
         </li>
 
         <li>
-          <a href="/handlelicense" >
+          <a href="/managecomplains1" class="active">
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
-            <span class="links_name">Handle License</span>
+            <span class="links_name">Manage Complains 1</span>
           </a>
         </li>
 
         <li>
-          <a href="/manageofficers" class="active">
+          <a href="/managecomplains2">
           <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
             <span class="links_name">Manage Officers</span>
           </a>
         </li>
 
         <li>
-          <a href="/managemomplainers">
+          <a href="/managemomplainers" >
           <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
             <span class="links_name">Manage Complainers</span>
           </a>
@@ -168,7 +171,7 @@ function displayLicenser(userId){
       <nav>
       <div className="sidebar-button" onClick={toggleSidebar}>
       <i className={`bx ${sidebarActive ? 'bx-menu-alt-right' : 'bx-menu'} sidebarBtn`}><FontAwesomeIcon icon={faBars}/></i>
-          <span class="dashboard">Manage Officers</span>
+          <span class="dashboard">Manage Complainers</span>
         </div>
         <div class="search-box">
           <input type="text" placeholder="Search..." />
@@ -189,99 +192,22 @@ function displayLicenser(userId){
         <div class="sales-boxes" >
           
           <div class="recent-sales box" id='licenserboard'>
-          <form onSubmit={createLiceners} className='liceform1'>
-                <input
-                  type='text'
-                  placeholder='Username'
-                  name='username'
-                  onChange={handleChange}
-                />
 
-                <input
-                  type='text'
-                  placeholder='First Name'
-                  name='name'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Designation'
-                  name='designation'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Batch No'
-                  name='batch_no'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Department'
-                  name='department'
-                  onChange={handleChange}
-                />
-
-                  <input
-                  type='text'
-                  placeholder='Address'
-                  name='address'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='number'
-                  placeholder='Contact No'
-                  name='contact_no'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Station'
-                  name='station'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='number'
-                  placeholder='Age'
-                  name='age'
-                  onChange={handleChange}
-                />
-
-                  <input
-                  type='email'
-                  placeholder='email'
-                  name='email'
-                  onChange={handleChange}
-                />
-                                <input
-                  type='text'
-                  placeholder='Password'
-                  name='password'
-                  onChange={handleChange}
-                />
-                <button type='submit'>Create</button>
-              </form>
 
 
               <form onSubmit={()=>updateLicenser(user2.id)} className='liceform2'>
                 <input
                   type='text'
-                  name='username'
+                  name='complain_status'
                   onChange={handleChange2}
-                  defaultValue={user2.username}
+                  defaultValue={user2.complain_status}
                 />
 
                 <input
-                  type='text'
-                  name='name'
+                  type='date'
+                  name='arrivedate'
                   onChange={handleChange2}
-                  defaultValue={user2.name}
+                  defaultValue={user2.arrivedate}
                 />
                 <button type='submit'>Save Changes</button>
               </form>
@@ -292,17 +218,15 @@ function displayLicenser(userId){
                 <thead>
                   <tr>
                     <th className='licenpoth'>ID</th>
-                    <th className='licenpoth'>Username</th>
-                    <th className='licenpoth'>Name</th>
-                    <th className='licenpoth'>Designation</th>
-                    <th className='licenpoth'>Batch No</th>
-                    <th className='licenpoth'>Department</th>
-                    <th className='licenpoth'>Address</th>
+                    <th className='licenpoth'>Damage Prperty Type</th>
+                    <th className='licenpoth'>Area</th>
+                    <th className='licenpoth'>Date Of Damage</th>
+                    <th className='licenpoth'>Estimated Cost Of Damage</th>
+                    <th className='licenpoth'>Short Discription About Damage</th>
                     <th className='licenpoth'>Contact No</th>
-                    <th className='licenpoth'>Station</th>
-                    <th className='licenpoth'>Age</th>
-                    <th className='licenpoth'>Email</th>
-                    <th className='licenpoth'>Password</th>
+                    <th className='licenpoth'>Address</th>
+                    <th className='licenpoth'>Complain Status</th>
+                    <th className='licenpoth'>The Date Should You Arrive</th>
                     <th className='licenpoth'>Actions</th>
                   </tr>
                 </thead>
@@ -312,17 +236,16 @@ function displayLicenser(userId){
                   
                   <tr key={user.id}>
                   <td className='licenpotd'>{user.id}</td>
-                  <td className='licenpotd'>{user.username}</td>
-                  <td className='licenpotd'>{user.name}</td>
-                  <td className='licenpotd'>{user.designation}</td>
-                  <td className='licenpotd'>{user.batch_no}</td>
-                  <td className='licenpotd'>{user.department}</td>
-                  <td className='licenpotd'>{user.address}</td>
+                  <td className='licenpotd'>{user.type}</td>
+                  <td className='licenpotd'>{user.area}</td>
+                  <td className='licenpotd'>{user.dod}</td>
+                  <td className='licenpotd'>{user.ecod}</td>
+
+                  <td className='licenpotd'>{user.sdad}</td>
                   <td className='licenpotd'>{user.contact_no}</td>
-                  <td className='licenpotd'>{user.station}</td>
-                  <td className='licenpotd'>{user.age}</td>
-                  <td className='licenpotd'>{user.email}</td>
-                  <td className='licenpotd'>{user.password}</td>
+                  <td className='licenpotd'>{user.address}</td>
+                  <td className='licenpotd'>{user.complain_status}</td>
+                  <td className='licenpotd'>{user.arrivedate}</td>
                   <td className='licenpotd'>
                     <button onClick={()=>{deleteLicenser(user.id)}} className='licebtn1'>Delete</button>
                     <button onClick={()=>{displayLicenser(user.id)}} className='licebtn2'>Edit</button>
@@ -342,4 +265,4 @@ function displayLicenser(userId){
     </div>
     )
 }
-export default ManageOfficers;
+export default ManageComplains1;

@@ -191,23 +191,7 @@ function displayLicenser(userId){
         <div class="sales-boxes" >
           
           <div class="recent-sales box" id='licenserboard'>
-          <form onSubmit={createLiceners} className='liceform1'>
-                <input
-                  type='text'
-                  placeholder='Username'
-                  name='username'
-                  onChange={handleChange}
-                />
 
-                <input
-                  type='text'
-                  placeholder='First Name'
-                  name='fname'
-                  onChange={handleChange}
-                />
-                
-                <button type='submit'>Create</button>
-              </form>
 
 
               <form onSubmit={()=>updateLicenser(user2.id)} className='liceform2'>
@@ -246,8 +230,6 @@ function displayLicenser(userId){
                     <th className='licenpoth'>Province</th>
                     <th className='licenpoth'>State</th>
                     <th className='licenpoth'>Postal Code</th>
-                    <th className='licenpoth'>Email</th>
-                    <th className='licenpoth'>Password</th>
                     <th className='licenpoth'>Actions</th>
                   </tr>
                 </thead>
@@ -271,8 +253,6 @@ function displayLicenser(userId){
                   <td className='licenpotd'>{user.province}</td>
                   <td className='licenpotd'>{user.state}</td>
                   <td className='licenpotd'>{user.postal_code}</td>
-                  <td className='licenpotd'>{user.email}</td>
-                  <td className='licenpotd'>{user.password}</td>
                   <td className='licenpotd'>
                     <button onClick={()=>{deleteLicenser(user.id)}} className='licebtn1'>Delete</button>
                     <button onClick={()=>{displayLicenser(user.id)}} className='licebtn2'>Edit</button>

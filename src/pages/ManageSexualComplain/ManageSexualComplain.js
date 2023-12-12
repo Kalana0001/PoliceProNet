@@ -1,10 +1,10 @@
 import { faBars, faDashboard, faGear, faHeadSideVirus, faHeart, faMessage, faPeopleRoof, faSearch, faWallet, } from '@fortawesome/free-solid-svg-icons';
-import { supabase } from '../../Config/SupaBaseClient';
-import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AdminNavabar from '../../components/AdminNavabar/AdminNavabar';
+import { supabase } from '../../Config/SupaBaseClient';
+import React, { useEffect, useState } from 'react';
 
-const ManageAdmins=()=>{
+const ManageSexualComplain=()=>{
   const [sidebarActive, setSidebarActive] = useState(false);
 
   const toggleSidebar = () => {
@@ -14,11 +14,11 @@ const ManageAdmins=()=>{
   const [users,setUsers]=useState([])
 
   const [user, setUser]=useState({
-    username:'',name:'',contact_no:'',address:'',email:'',password:''
+    username:'',name:''
   })
 
   const [user2, setUser2]=useState({
-    id:'' ,username:'',name:''
+    id:'' ,status:''
   })
 
   console.log(user2)
@@ -29,21 +29,11 @@ const ManageAdmins=()=>{
 
   async function fetchLiceners(){
     const {data} = await supabase
-    .from('admin')
+    .from('AdultSexual')
     .select('*')
     setUsers(data)
   }
-
-  function handleChange(event){
-      setUser(prevFormData =>{
-        return{
-          ...prevFormData,
-          [event.target.name]:event.target.value
-        }
-      })
-  }
   
-
   function handleChange2(event){
     setUser2(prevFormData =>{
       return{
@@ -57,14 +47,14 @@ const ManageAdmins=()=>{
   async function createLiceners(){
 
     await supabase
-    .from('admin')
-    .insert({username: user.username, name: user.name,contact_no: user.contact_no, address: user.address, email: user.email, password: user.password})
+    .from('AdultSexual')
+    .insert({username: user.username, name: user.name})
   }
 
   async function deleteLicenser(userId){
 
     const {data, error} = await supabase
-    .from('admin')
+    .from('AdultSexual')
     .delete()
     .eq('id', userId)
 
@@ -82,7 +72,7 @@ function displayLicenser(userId){
     users.map((user)=>{
 
       if(user.id==userId){
-        setUser2({id:user.id,username:user.username,name:user.name})
+        setUser2({id:user.id,status:user.status})
       }
     })
 
@@ -90,8 +80,8 @@ function displayLicenser(userId){
 
  async function updateLicenser(userId){
     const {data,error} = await supabase
-    .from('admin')
-    .update({id:user2.id,username:user2.username,name:user2.name})
+    .from('AdultSexual')
+    .update({id:user2.id,status:user2.status})
     .eq('id', userId)
 
     fetchLiceners()
@@ -103,7 +93,6 @@ function displayLicenser(userId){
       console.log(data)
     }
   }
-
     return(
     <div>
     <AdminNavabar/>
@@ -111,48 +100,41 @@ function displayLicenser(userId){
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
       <div class="logo-details">
         <i class="bx bxl-c-plus-plus"></i>
-        <span class="logo_name">Admin</span>
+        <span class="logo_name">Police Officer</span>
       </div>
       <ul class="nav-links">
         <li>
-          <a href="/admindashboard" >
+          <a href="/policedashboard" >
             <i class="bx bx-grid-alt"><FontAwesomeIcon icon={faDashboard}/></i>
             <span class="links_name">Dashboard</span>
           </a>
         </li>
 
         <li>
-          <a href="/managelicenser">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Licensers</span>
-          </a>
-        </li>
-
-        <li>
-          <a href="/handlelicense" >
+          <a href="/scanqr" >
             <i class="bx bx-user"><FontAwesomeIcon icon={faWallet}/></i>
-            <span class="links_name">Handle License</span>
+            <span class="links_name">Scan QR</span>
           </a>
         </li>
 
         <li>
-          <a href="/manageofficers">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Officers</span>
+          <a href="/managedamage">
+            <i class="bx bx-message"><FontAwesomeIcon icon={faMessage}/></i>
+            <span class="links_name">Damage Complains</span>
           </a>
         </li>
 
         <li>
-          <a href="/managemomplainers">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Complainers</span>
+          <a href="/manageSexualcomplain" class="active">
+            <i class="bx bx-heart"><FontAwesomeIcon icon={faHeadSideVirus}/></i>
+            <span class="links_name">Sexual Complains</span>
           </a>
         </li>
 
         <li>
-          <a href="/manageadmins" class="active">
-          <i class="bx bx-user"><FontAwesomeIcon icon={faPeopleRoof}/></i>
-            <span class="links_name">Manage Admins</span>
+          <a href="/setting">
+            <i class="bx bx-cog"><FontAwesomeIcon icon={faGear}/></i>
+            <span class="links_name">Setting</span>
           </a>
         </li>
 
@@ -169,7 +151,7 @@ function displayLicenser(userId){
       <nav>
       <div className="sidebar-button" onClick={toggleSidebar}>
       <i className={`bx ${sidebarActive ? 'bx-menu-alt-right' : 'bx-menu'} sidebarBtn`}><FontAwesomeIcon icon={faBars}/></i>
-          <span class="dashboard">Manage Admins</span>
+          <span class="dashboard">Manage Complains</span>
         </div>
         <div class="search-box">
           <input type="text" placeholder="Search..." />
@@ -190,67 +172,20 @@ function displayLicenser(userId){
         <div class="sales-boxes" >
           
           <div class="recent-sales box" id='licenserboard'>
-          <form onSubmit={createLiceners} className='liceform1'>
-                <input
-                  type='text'
-                  placeholder='Username'
-                  name='username'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='text'
-                  placeholder='Name'
-                  name='name'
-                  onChange={handleChange}
-                />
-
-                <input
-                  type='number'
-                  placeholder='Contact No'
-                  name='contact_no'
-                  onChange={handleChange}
-                />
-
-                  <input
-                  type='text'
-                  placeholder='Address'
-                  name='address'
-                  onChange={handleChange}
-                />
-                  <input
-                  type='email'
-                  placeholder='Email'
-                  name='email'
-                  onChange={handleChange}
-                />
-                    <input
-                  type='text'
-                  placeholder='Password'
-                  name='password'
-                  onChange={handleChange}
-                />
-                
-                <button type='submit'>Create</button>
-              </form>
-
 
               <form onSubmit={()=>updateLicenser(user2.id)} className='liceform2'>
                 <input
                   type='text'
-                  name='username'
+                  name='status'
                   onChange={handleChange2}
-                  defaultValue={user2.username}
-                />
-
-                <input
-                  type='text'
-                  name='name'
-                  onChange={handleChange2}
-                  defaultValue={user2.name}
+                  defaultValue={user2.status}
                 />
                 <button type='submit'>Save Changes</button>
               </form>
+
+
+            <div>
+            
             <div class="sales-details">
 
 
@@ -258,12 +193,16 @@ function displayLicenser(userId){
                 <thead>
                   <tr>
                     <th className='licenpoth'>ID</th>
-                    <th className='licenpoth'>Username</th>
-                    <th className='licenpoth'>Name</th>
+                    <th className='licenpoth'>Full Name</th>
+                    <th className='licenpoth'>Type</th>
+                    <th className='licenpoth'>Gender</th>
+                    <th className='licenpoth'>Age</th>
+                    <th className='licenpoth'>DOB</th>
+                    <th className='licenpoth'>NIC</th>
                     <th className='licenpoth'>Contact No</th>
                     <th className='licenpoth'>Address</th>
-                    <th className='licenpoth'>Email</th>
-                    <th className='licenpoth'>Password</th>
+                    <th className='licenpoth'>Additional Info</th>
+                    <th className='licenpoth'>Status</th>
                     <th className='licenpoth'>Actions</th>
                   </tr>
                 </thead>
@@ -273,14 +212,17 @@ function displayLicenser(userId){
                   
                   <tr key={user.id}>
                   <td className='licenpotd'>{user.id}</td>
-                  <td className='licenpotd'>{user.username}</td>
-                  <td className='licenpotd'>{user.name}</td>
+                  <td className='licenpotd'>{user.full_name}</td>
+                  <td className='licenpotd'>{user.type}</td>
+                  <td className='licenpotd'>{user.gender}</td>
+                  <td className='licenpotd'>{user.age}</td>
+                  <td className='licenpotd'>{user.dob}</td>
+                  <td className='licenpotd'>{user.nic}</td>
                   <td className='licenpotd'>{user.contact_no}</td>
                   <td className='licenpotd'>{user.address}</td>
-                  <td className='licenpotd'>{user.email}</td>
-                  <td className='licenpotd'>{user.password}</td>
+                  <td className='licenpotd'>{user.aditionalinfo}</td>
+                  <td className='licenpotd'>{user.status}</td>
                   <td className='licenpotd'>
-                    <button onClick={()=>{deleteLicenser(user.id)}} className='licebtn1'>Delete</button>
                     <button onClick={()=>{displayLicenser(user.id)}} className='licebtn2'>Edit</button>
                   </td>
                   </tr>
@@ -290,6 +232,10 @@ function displayLicenser(userId){
               </table>
 
             </div>
+
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -298,4 +244,4 @@ function displayLicenser(userId){
     </div>
     )
 }
-export default ManageAdmins;
+export default ManageSexualComplain;

@@ -20,7 +20,7 @@ function LicenserNavbar() {
             <nav ref={navRef}>
                 <a href="/licenserhome" class='navia'><FontAwesomeIcon icon={faHome}/>Home</a>
                 <a href="/licenserdashboard" class='navia'><FontAwesomeIcon icon={faDashboard}/>Dashboard</a>
-                <a href="/contactus" class='navia'><FontAwesomeIcon icon={faPhone}/>Contact US</a>
+                <a href="/licensercontactus" class='navia'><FontAwesomeIcon icon={faPhone}/>Contact US</a>
                 <LogOut/>
                 <button
                     className="nav-btn nav-close-btn"
